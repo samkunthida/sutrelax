@@ -3,8 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
 
-import OrangeButton from '../components/orangeButton'
-import OrangeButtonDefault from '../components/orangeButtonDefault';
+import Button1 from '../components/Button1';
 
 const RegisterScreen = ({ navigation }) => {
 
@@ -31,7 +30,7 @@ const RegisterScreen = ({ navigation }) => {
                 placeholderTextColor={colors.sut_grey7d}
                 secureTextEntry={true} />
 
-                <OrangeButtonDefault text='ส่งไปยังอีเมล' onPress={RegisterButton}></OrangeButtonDefault>
+                <Button1 text='ส่งไปยังอีเมล' onPress={RegisterButton}></Button1>
             </View>
         </View>
     )

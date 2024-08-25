@@ -3,8 +3,8 @@ import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
 
-import OrangeButton from '../components/orangeButton'
-import OrangeButtonDefault from '../components/orangeButtonDefault';
+import Button2 from '../components/Button2'
+import Button1 from '../components/Button1';
 
 const Screen = ({ navigation }) => {
 

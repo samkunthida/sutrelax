@@ -3,8 +3,10 @@ import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
 
-import OrangeButton from '../components/orangeButton'
-import OrangeButtonDefault from '../components/orangeButtonDefault';
+import Button1 from '../components/Button1';
+
+//images
+import TopBG from '../assets/images/TopBG.png'
 
 const SubRegisterScreen_2 = ({ navigation }) => {
 
@@ -15,26 +17,33 @@ const SubRegisterScreen_2 = ({ navigation }) => {
 
     // Screen
     return (
-        <View style={styles.container}>
-            <View style={styles.contentContainer}>
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
 
-                <Text style={styles.topic}>คุณชื่ออะไร?</Text>
+        <View style={styles.topContainer}>
+        <Image source={TopBG} style={styles.backgroundImage1} />
+        </View>
+
+        <View style={styles.secondContentContainer}> 
+        <Text style={styles.topic}>คุณชื่ออะไร?</Text>
                 
-                <View style={styles.textInputContainer}>
-                <TextInput style={styles.textinput1}
-                placeholder='ชื่อ'
-                placeholderTextColor={colors.sut_grey7d}
-                />
-                <TextInput style={styles.textinput1}
-                placeholder='นามสกุล (ไม่ต้องระบุก็ได้)'
-                placeholderTextColor={colors.sut_grey7d}
-                />
-                </View>
+        <View style={styles.textInputContainer}>
+        <TextInput style={styles.textinput1}
+        placeholder='ชื่อ'
+        placeholderTextColor={colors.sut_grey7d}
+        />
+        <TextInput style={styles.textinput1}
+        placeholder='นามสกุล (ไม่ต้องระบุก็ได้)'
+        placeholderTextColor={colors.sut_grey7d}
+        />
+        </View>
 
-                <View style={styles.buttonContainer}>
-                <OrangeButtonDefault text='โอเค!' onPress={nextButton}></OrangeButtonDefault>
-                </View>
-            </View>
+        <View style={styles.buttonContainer}>
+        <Button1 text='โอเค!' onPress={nextButton}></Button1>
+        </View>
+
+        </View>
+        </View>
         </View>
     )
 }
@@ -62,8 +71,9 @@ const styles = StyleSheet.create({
         
       },
       buttonContainer: {
-        marginTop: 60,
-        alignItems: 'center'
+        marginTop: 150,
+        alignItems: 'center',
+        marginBottom: 65
       },
       textinput1: {
         borderColor: colors.sut_grey7d,
@@ -80,7 +90,19 @@ const styles = StyleSheet.create({
       textInputContainer: {
         marginTop: 30,
         alignItems: 'center'
-      }
+      },
+      backgroundImage1: {
+        resizeMode: "contain",
+        width: 420,
+        height: 925,
+        position: 'absolute',
+        top: -300,
+        left: -210,
+      },
+      secondContentContainer: {
+        height: '100%',
+        justifyContent: 'flex-end',
+      },
 });
 
 export default SubRegisterScreen_2

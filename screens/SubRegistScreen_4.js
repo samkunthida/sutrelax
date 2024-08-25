@@ -3,7 +3,11 @@ import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
 
+import Button1 from '../components/Button1';
 import DateTimePicker from '@react-native-community/datetimepicker';
+
+//images
+import TopBG from '../assets/images/TopBG.png'
 
 const SubRegisterScreen_4 = ({ navigation }) => {
 
@@ -34,7 +38,11 @@ const SubRegisterScreen_4 = ({ navigation }) => {
     // Screen
     return (
         <View style={styles.container}>
-            <View style={styles.contentContainer}>
+        <View style={styles.contentContainer}>
+
+        <View style={styles.topContainer}>
+        <Image source={TopBG} style={styles.backgroundImage1} />
+        </View>
 
             <Text style={styles.topic}>วันเดือนปีเกิดของคุณ?</Text>
 
@@ -57,7 +65,9 @@ const SubRegisterScreen_4 = ({ navigation }) => {
                 editable={false}
                  />
             </Pressable>)}
-
+            <View style={styles.buttonContainer}>
+            <Button1 text='โอเค!' onPress={nextButton}></Button1>
+            </View>
             </View>
         </View>
     )
@@ -80,7 +90,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
         fontSize: 24,
         color: colors.sut_darkblue,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom:30,
+        marginTop: 380
       },
       textinput1: {
         borderColor: colors.sut_grey7d,
@@ -93,6 +105,23 @@ const styles = StyleSheet.create({
         color: colors.sut_white,
         fontFamily: 'Kanit-Regular',
         fontSize: 16
+      },
+      backgroundImage1: {
+        resizeMode: "contain",
+        width: 420,
+        height: 925,
+        position: 'absolute',
+        top: -300,
+        left: -210,
+      },
+      secondContentContainer: {
+        height: '100%',
+        justifyContent: 'center',
+      },
+      buttonContainer: {
+        marginTop: 250,
+        alignItems: 'center',
+        marginBottom: 65
       },
 });
 

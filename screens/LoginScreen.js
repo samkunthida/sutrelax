@@ -3,8 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
 
-import OrangeButton from '../components/orangeButton'
-import OrangeButtonDefault from '../components/orangeButtonDefault';
+import Button1 from '../components/Button1';
 import BlueTextButton from '../components/blueTextButton';
 
 const LoginScreen = ({ navigation }) => {
@@ -35,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
                 <BlueTextButton text= "ลืมรหัสผ่าน" onPress={ForgetButton}></BlueTextButton>
                 </View>
 
-                <OrangeButtonDefault text='เข้าสู่ระบบ' onPress={LoginButton}></OrangeButtonDefault>
+                <Button1 text='เข้าสู่ระบบ' onPress={LoginButton}></Button1>
             </View>
         </View>
     )

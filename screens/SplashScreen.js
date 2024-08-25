@@ -4,13 +4,12 @@ import { useState } from 'react'
 import colors from '../colors'
 
 //components
-import OrangeButton from '../components/orangeButton'
-import DarkGreyButton from '../components/darkGreyButton'
+import Button2 from '../components/Button2'
+import Button3 from '../components/Button3'
 
 //images
-import SplashBG from '../assets/images/SplashBG.png'
+import SplashBG from '../assets/images/SplashBG1.png'
 import SplashLogo from '../assets/images/SplashLogo.png'
-import SplashTriangle from '../assets/images/SplashTriangle.png'
 
 
 
@@ -30,13 +29,12 @@ const RegisterButton = () => {
 
       <View style={styles.topContainer}>
       <Image source={SplashBG} style={styles.backgroundImage1} />
-      <Image source={SplashTriangle} style={styles.logoImage1} />
       <Image source={SplashLogo} style={styles.logoImage2} />
       </View>
 
       <View style={styles.buttonContainer}>
-      <OrangeButton text='สร้างบัญชีผู้ใช้' onPress={RegisterButton}></OrangeButton>
-      <DarkGreyButton text='เข้าสู่ระบบ' onPress={LoginButton}></DarkGreyButton>
+      <Button2 text='สร้างบัญชีผู้ใช้' onPress={RegisterButton}></Button2>
+      <Button3 text='เข้าสู่ระบบ' onPress={LoginButton}></Button3>
       </View>
 
     </View>

@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 
 import colors from '../colors'
 
-export default function OrangeButton({ text, onPress }) {
+export default function Button3({ text, onPress }) {
     return (
         <TouchableOpacity onPress={onPress} >
             <View style={styles.button1}>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 370,
         marginVertical: 10,
-        backgroundColor: colors.sut_orange,
+        backgroundColor: colors.sut_darkgrey,
     },
     buttonText: {
         color: colors.sut_white,

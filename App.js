@@ -20,7 +20,7 @@ import ProfileScreen from './screens/ProfileScreen'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome } from '@expo/vector-icons';
 //import { useFonts } from 'expo-font';
 
 //Navigation Variables
@@ -38,6 +38,41 @@ export class App extends Component {
     return (
       
       <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+        headerTitleStyle: {
+          fontFamily: 'Kanit-Medium',
+          color: colors.sut_white},
+        headerTitleAlign: 'center',
+        headerTintColor: colors.sut_white,
+        headerStyle: {backgroundColor: colors.sut_darkblue},
+        headerShown: false
+      }}
+      >
+        <Stack.Screen
+          name="LoginStack"
+          component={LoginStack}
+          option={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="HomeStack"
+          component={HomeStack}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen 
+          name="RegSubStack"
+          component={RegSubStack}
+          options={{headerShown: false}}
+        />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+    )
+  }
+}
+
+function LoginStack(){
+  return(
       <Stack.Navigator
       screenOptions={{
         headerTitleStyle: {
@@ -80,9 +115,7 @@ export class App extends Component {
         />
         
       </Stack.Navigator>
-    </NavigationContainer>
-    )
-  }
+  )
 }
 
 function RegSubStack(){
@@ -115,7 +148,15 @@ function RegSubStack(){
 
 function HomeStack(){
   return(
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={{
+      headerTitleStyle: {
+        fontFamily: 'Kanit-Medium',
+        color: colors.sut_darkblue},
+      headerTitleAlign: 'center',
+      headerTintColor: colors.sut_darkblue,
+      headerStyle: {backgroundColor: colors.sut_white}
+    }}>
       <Tab.Screen
       name="HomeScreen"
       component={HomeScreen}
@@ -132,7 +173,8 @@ function HomeStack(){
       component={ExploreScreen}
       options={{
         tabBarLabel: 'สำรวจ',
-        headerShown: false,
+        headerTitle: "สำรวจ",
+        headerShown: true,
         tabBarIcon: ({ color, size }) => (
           <FontAwesome name="cubes" size={size} color={color} />
       ),

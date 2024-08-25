@@ -6,6 +6,9 @@ import colors from '../colors'
 import GreySQButton from '../components/GreySQButton';
 import LightGreySQButton from '../components/LightGreyButton';
 
+//images
+import TopBG from '../assets/images/TopBG.png'
+
 const SubRegisterScreen_3 = ({ navigation }) => {
 
     // Functions
@@ -26,14 +29,20 @@ const SubRegisterScreen_3 = ({ navigation }) => {
     // Screen
     return (
         <View style={styles.container}>
-            <View style={styles.contentContainer}>
-            <Text style={styles.topic}>เพศสภาพของคุณ?</Text>
+        <View style={styles.contentContainer}>
 
+        <View style={styles.topContainer}>
+        <Image source={TopBG} style={styles.backgroundImage1} />
+        </View>
+            
+        <View style={styles.secondContentContainer}> 
+            <Text style={styles.topic}>เพศสภาพของคุณ?</Text>
             <View style={styles.buttomContainer} >
             <GreySQButton text = "เพศชาย" onPress={nextButton1}></GreySQButton>
             <GreySQButton text = "เพศหญิง" onPress={nextButton2}></GreySQButton>
             <LightGreySQButton text = "ไม่ระบุ" onPress={nextButton3}></LightGreySQButton>
             </View>
+        </View>
 
             </View>
         </View>
@@ -58,11 +67,21 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: colors.sut_darkblue,
         textAlign: 'center',
-        marginBottom:30
+        marginBottom:30,
+        marginTop: 155
       },
-      buttomContainer: {
-        
-      }
+      backgroundImage1: {
+        resizeMode: "contain",
+        width: 420,
+        height: 925,
+        position: 'absolute',
+        top: -300,
+        left: -210,
+      },
+      secondContentContainer: {
+        height: '100%',
+        justifyContent: 'center',
+      },
 
 });
 

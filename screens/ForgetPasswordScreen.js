@@ -3,8 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
 
-import OrangeButton from '../components/orangeButton'
-import OrangeButtonDefault from '../components/orangeButtonDefault';
+import Button1 from '../components/Button1';
 
 const ForgetPasswordScreen = ({ navigation }) => {
 
@@ -23,7 +22,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
                 placeholderTextColor={colors.sut_grey7d}
                 keyboardType='email-address' />
 
-                <OrangeButtonDefault text='ส่งไปยังอีเมล' onPress={SendEmailButton}></OrangeButtonDefault>
+                <Button1 text='ส่งไปยังอีเมล' onPress={SendEmailButton}></Button1>
             </View>
         </View>
     )
