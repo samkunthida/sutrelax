@@ -2,9 +2,10 @@ import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-nativ
 import React from 'react'
 import { useState } from 'react';
 import colors from '../colors'
+import stringTH from '../string';
 
 import Button1 from '../components/Button1';
-import BlueTextButton from '../components/blueTextButton';
+import TextButton from '../components/TextButton';
 
 const LoginScreen = ({ navigation }) => {
 
@@ -22,19 +23,20 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.contentContainer}>
 
                 <TextInput style={styles.textinput1}
-                placeholder='อีเมล'
+                placeholder={stringTH.email}
                 placeholderTextColor={colors.sut_grey7d}
                 keyboardType='email-address' />
+
                 <TextInput style={styles.textinput1}
-                placeholder='รหัสผ่าน'
+                placeholder= {stringTH.password}
                 placeholderTextColor={colors.sut_grey7d}
                 secureTextEntry={true} />
 
                 <View style={styles.textButtonContainer}>
-                <BlueTextButton text= "ลืมรหัสผ่าน" onPress={ForgetButton}></BlueTextButton>
+                <TextButton text= {stringTH.forgetPassword} onPress={ForgetButton}></TextButton>
                 </View>
 
-                <Button1 text='เข้าสู่ระบบ' onPress={LoginButton}></Button1>
+                <Button1 text={stringTH.login} onPress={LoginButton}></Button1>
             </View>
         </View>
     )
