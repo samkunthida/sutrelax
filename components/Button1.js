@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 
 import colors from '../colors'
 
-export default function OButton1({ text, onPress, style }) {
+export default function Button1({ text, onPress, style }) {
     return (
         <TouchableOpacity onPress={onPress} >
             <View style={[styles.button1, style]}>
