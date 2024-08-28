@@ -1,27 +1,17 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
-import colors from './colors'
-//Import screens
-import SplashScreen from './screens/SplashScreen'
-import RegisterScreen from './screens/RegisterScreen'
-import LoginScreen from './screens/LoginScreen'
-import ForgetPasswordScreen from './screens/ForgetPasswordScreen'
 
-import SubRegistScreen_1 from './screens/SubRegistScreen_1'
-import SubRegistScreen_2 from './screens/SubRegistScreen_2'
-import SubRegistScreen_3 from './screens/SubRegistScreen_3'
-import SubRegistScreen_4 from './screens/SubRegistScreen_4'
 
-import HomeScreen from './screens/HomeScreen'
-import ExploreScreen from './screens/ExploreScreen'
-import ProfileScreen from './screens/ProfileScreen'
+//import factors
+import colors from './factors/colors'
+import stringTH from './factors/strings'
+import ROUTES from './factors/routes'
 
-//Navigation Dependencies
+//import dependencies
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-//import { useFonts } from 'expo-font';
 
 //Navigation Variables
 const Stack = createNativeStackNavigator();
@@ -29,11 +19,6 @@ const Tab = createBottomTabNavigator();
 
 export class App extends Component {
   render() {
-
-    //for font loader
-    // const [fontsLoaded] = useFonts({
-    //   Font1: require('./assets/fonts/Kanit-Regular.ttf'),
-    // });
 
     return (
       
@@ -84,24 +69,24 @@ function LoginStack(){
       }}
       >
         <Stack.Screen
-          name="FirstSplash"
-          component={SplashScreen}
+          name="Splash"
+          component={ROUTES.SPLASH}
           options={{headerShown: false}}
         />
         <Stack.Screen 
-          name="RegisterScreen"
-          component={RegisterScreen}
-          options={{headerShown: true, title: "สร้างบัญชีผู้ใช้"}}
+          name="Register"
+          component={ROUTES.REGISTER}
+          options={{headerShown: true, title: stringTH.createAccount}}
         />
         <Stack.Screen 
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{headerShown: true, headerTitle: "เข้าสู่ระบบ"}}
+          name="Login"
+          component={ROUTES.LOGIN}
+          options={{headerShown: true, headerTitle: stringTH.login}}
         />
         <Stack.Screen 
-          name="ForgetPasswordScreen"
-          component={ForgetPasswordScreen}
-          options={{headerShown: true, headerTitle: "ลืมรหัสผ่าน"}}
+          name="ForgetPassword"
+          component={ROUTES.FORGETPASSWORD}
+          options={{headerShown: true, headerTitle: stringTH.forgetPassword}}
         />
         <Stack.Screen 
           name="HomeStack"
@@ -123,23 +108,23 @@ function RegSubStack(){
 
       <Stack.Navigator>
         <Stack.Screen
-          name="SubRegistScreen_1"
-          component={SubRegistScreen_1}
+          name="SubRegist_1"
+          component={ROUTES.SUBREGIS1}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="SubRegistScreen_2"
-          component={SubRegistScreen_2}
+          name="SubRegist_2"
+          component={ROUTES.SUBREGIS2}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="SubRegistScreen_3"
-          component={SubRegistScreen_3}
+          name="SubRegist_3"
+          component={ROUTES.SUBREGIS3}
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="SubRegistScreen_4"
-          component={SubRegistScreen_4}
+          name="SubRegist_4"
+          component={ROUTES.SUBREGIS4}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
@@ -158,10 +143,10 @@ function HomeStack(){
       headerStyle: {backgroundColor: colors.sut_white}
     }}>
       <Tab.Screen
-      name="HomeScreen"
-      component={HomeScreen}
+      name="Home"
+      component={ROUTES.HOME}
       options={{
-        tabBarLabel: 'หน้าหลัก',
+        tabBarLabel: stringTH.home,
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <FontAwesome name="home" size={size} color={color} />
@@ -169,11 +154,11 @@ function HomeStack(){
       }}
       />
       <Tab.Screen
-      name="ExploreScreen"
-      component={ExploreScreen}
+      name="Explore"
+      component={ROUTES.EXPLORE}
       options={{
-        tabBarLabel: 'สำรวจ',
-        headerTitle: "สำรวจ",
+        tabBarLabel: stringTH.exploer,
+        headerTitle: stringTH.exploer,
         headerShown: true,
         tabBarIcon: ({ color, size }) => (
           <FontAwesome name="cubes" size={size} color={color} />
@@ -181,10 +166,10 @@ function HomeStack(){
       }}
       />
       <Tab.Screen
-      name="ProfileScreen"
-      component={ProfileScreen}
+      name="Profile"
+      component={ROUTES.PROFILE}
       options={{
-        tabBarLabel: 'โปรไฟล์',
+        tabBarLabel: stringTH.profile,
         headerShown: false,
         tabBarIcon: ({ color, size }) => (
           <FontAwesome name="user" size={size} color={color} />

@@ -1,8 +1,12 @@
 import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
-import colors from '../colors'
 
+//import factors
+import colors from '../factors/colors'
+import stringTH from '../factors/strings'
+
+//import components
 import Button1 from '../components/Button1';
 
 const ForgetPasswordScreen = ({ navigation }) => {

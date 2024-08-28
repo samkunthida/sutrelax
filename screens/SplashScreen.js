@@ -1,26 +1,23 @@
 import { View, Text, StyleSheet, Image, Dimensions} from 'react-native'
-import React from 'react'
-import { useState } from 'react'
-import colors from '../colors'
+import { useState, React } from 'react'
 
-//components
+//import factors
+import colors from '../factors/colors'
+import stringTH from '../factors/strings'
+import images from '../factors/images'
+
+//import components
 import Button2 from '../components/Button2'
 import Button3 from '../components/Button3'
-
-//images
-import SplashBG from '../assets/images/SplashBG1.png'
-import SplashLogo from '../assets/images/SplashLogo.png'
-
-
 
 const SplashScreen = ({ navigation }) => {
 
   // Functions
 const LoginButton = () => {
-  navigation.navigate('LoginScreen');
+  navigation.navigate('Login');
 }
 const RegisterButton = () => {
-  navigation.navigate('RegisterScreen');
+  navigation.navigate('Register');
 }
 
   // Screen
@@ -28,8 +25,8 @@ const RegisterButton = () => {
     <View style={styles.container}>
 
       <View style={styles.topContainer}>
-      <Image source={SplashBG} style={styles.backgroundImage1} />
-      <Image source={SplashLogo} style={styles.logoImage2} />
+      <Image source={images.SPLASHBG} style={styles.backgroundImage1} />
+      <Image source={images.SPLASHLOGO} style={styles.logoImage2} />
       </View>
 
       <View style={styles.buttonContainer}>

@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
-import colors from '../colors'
-import stringTH from '../string';
+
+//import factors
+import colors from '../factors/colors'
+import stringTH from '../factors/strings'
 
 import Button1 from '../components/Button1';
 import TextButton from '../components/TextButton';

@@ -1,19 +1,20 @@
 import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
-import React from 'react'
-import { useState } from 'react';
-import colors from '../colors'
+import { useState, React } from 'react';
 
+//import factors
+import colors from '../factors/colors'
+import stringTH from '../factors/strings'
+import images from '../factors/images';
+
+//import components
 import GreySQButton from '../components/GreySQButton';
 import LightGreySQButton from '../components/LightGreyButton';
-
-//images
-import TopBG from '../assets/images/TopBG.png'
 
 const SubRegisterScreen_3 = ({ navigation }) => {
 
     // Functions
     const nextButton1 = () => {
-        navigation.navigate('SubRegistScreen_4')
+        navigation.navigate('SubRegist_4')
         //add value
     }
     const nextButton2= () => {
@@ -32,7 +33,7 @@ const SubRegisterScreen_3 = ({ navigation }) => {
         <View style={styles.contentContainer}>
 
         <View style={styles.topContainer}>
-        <Image source={TopBG} style={styles.backgroundImage1} />
+        <Image source={images.TOPSUBREG} style={styles.backgroundImage1} />
         </View>
             
         <View style={styles.secondContentContainer}> 

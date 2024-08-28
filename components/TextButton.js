@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 
-import colors from '../colors'
+//import factors
+import colors from '../factors/colors'
 
 export default function TextButton({ text, onPress,style }) {
     return (
