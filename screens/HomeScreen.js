@@ -13,9 +13,6 @@ import MenuCard2 from '../components/MenuCard2';
 //import dependencies
 import { FontAwesome } from '@expo/vector-icons';
 
-//import images
-import Trioboy from '../assets/images/trioboy.png'
-
 const HomeScreen = ({ navigation }) => {
 
   const menuAction1 = () => {

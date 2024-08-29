@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions, TextInput, Button} from 'react-native'
 import { useState, React } from 'react';
 
 //import factors
@@ -7,8 +7,7 @@ import stringTH from '../factors/strings'
 import images from '../factors/images';
 
 //import components
-import GreySQButton from '../components/GreySQButton';
-import LightGreySQButton from '../components/LightGreyButton';
+import Button1 from '../components/Button1';
 
 const SubRegisterScreen_3 = ({ navigation }) => {
 
@@ -18,11 +17,11 @@ const SubRegisterScreen_3 = ({ navigation }) => {
         //add value
     }
     const nextButton2= () => {
-        navigation.navigate('SubRegistScreen_4')
+        navigation.navigate('SubRegist_4')
         //add value
     }
     const nextButton3 = () => {
-        navigation.navigate('SubRegistScreen_4')
+        navigation.navigate('SubRegis_4')
         //add value
     }
 
@@ -39,9 +38,9 @@ const SubRegisterScreen_3 = ({ navigation }) => {
         <View style={styles.secondContentContainer}> 
             <Text style={styles.topic}>เพศสภาพของคุณ?</Text>
             <View style={styles.buttomContainer} >
-            <GreySQButton text = "เพศชาย" onPress={nextButton1}></GreySQButton>
-            <GreySQButton text = "เพศหญิง" onPress={nextButton2}></GreySQButton>
-            <LightGreySQButton text = "ไม่ระบุ" onPress={nextButton3}></LightGreySQButton>
+            <Button1 text = "เพศชาย" onPress={nextButton1} style = {styles.greyButton}></Button1>
+            <Button1 text = "เพศหญิง" onPress={nextButton2} style = {styles.greyButton}></Button1>
+            <Button1 text = "ไม่ระบุ" onPress={nextButton3} style = {styles.lightGreyButton}></Button1>
             </View>
         </View>
 
@@ -83,6 +82,15 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
       },
+      greyButton: {
+        backgroundColor: colors.sut_grey7d,
+        marginBottom: 10,
+        borderRadius: 10
+      },
+      lightGreyButton: {
+        backgroundColor: colors.sut_lightgrey,
+        borderRadius: 10
+      }
 
 });
 

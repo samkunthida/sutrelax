@@ -7,8 +7,7 @@ import stringTH from '../factors/strings'
 import images from '../factors/images'
 
 //import components
-import Button2 from '../components/Button2'
-import Button3 from '../components/Button3'
+import Button1 from '../components/Button1'
 
 const SplashScreen = ({ navigation }) => {
 
@@ -30,8 +29,8 @@ const RegisterButton = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-      <Button2 text='สร้างบัญชีผู้ใช้' onPress={RegisterButton}></Button2>
-      <Button3 text='เข้าสู่ระบบ' onPress={LoginButton}></Button3>
+      <Button1 text='สร้างบัญชีผู้ใช้' onPress={RegisterButton} > </Button1>
+      <Button1 text='เข้าสู่ระบบ' onPress={LoginButton} style = {styles.button}></Button1>
       </View>
 
     </View>
@@ -71,23 +70,27 @@ const styles = StyleSheet.create({
   },
   logoImage1: {
     resizeMode: "contain",
-    width: 390, // Adjust width as needed
-    height: 390, // Adjust height as needed
+    width: 390,
+    height: 390,
     position: 'absolute',
-    top: -30, // Adjust top as needed
-    left: (0 - 390) / 2, // Center horizontally
+    top: -30,
+    left: (0 - 390) / 2,
   },
   logoImage2: {
     resizeMode: "contain",
-    width: 390, // Adjust width as needed
-    height: 149, // Adjust height as needed
+    width: 390,
+    height: 149,
     position: 'absolute',
-    top: 320, // Adjust top as needed
-    left: (0 - 390) / 2, // Center horizontally
+    top: 320,
+    left: (0 - 390) / 2,
   },
   logotext: {
     fontFamily: 'Kanit-Regular',
     fontSize: 24
+  },
+  button: {
+    marginTop: 20,
+    backgroundColor: colors.sut_darkgrey
   }
 
 
