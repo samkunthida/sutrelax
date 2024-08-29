@@ -17,7 +17,7 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <View>
       <Text>Profile Screen</Text>
-      <Button1 style={styles.button1} text="ออกจากระบบ" ></Button1>
+      <Button1 style={styles.button} text="ออกจากระบบ" ></Button1>
     </View>
   )
 }
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     container:{
 
     },
-    button1: {
+    button: {
       backgroundColor: colors.sut_red
     }
 });
