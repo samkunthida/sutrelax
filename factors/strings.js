@@ -25,6 +25,12 @@ const stringTH = {
     askQuestion: "ถามคำถาม",
     notiQuestion: "แจ้งเตือน",
 
+    //Register
+    invalidEmail: "อีเมลไม่ถูกต้อง",
+    passwordNotMatch: "รหัสผ่านไม่ตรงกัน",
+    createdAccount: "สร้างบัญชีสำเร็จ",
+    fillEmailPassword: "กรุณากรอกอีเมลและพาร์สเวิร์ด",
+
     //SubRegister
     subreg_message1: "ก่อนเริ่มใช้งาน\nเราต้องการทราบข้อมูลของคุณเบื้องต้น",
     subreg_question1: "คุณชื่ออะไร?",
