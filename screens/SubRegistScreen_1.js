@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { useState, React } from 'react';
-
 //import factors
 import colors from '../factors/colors'
 import stringTH from '../factors/strings'
@@ -12,8 +11,14 @@ import Button1 from '../components/Button1';
 const SubRegisterScreen_1 = ({ navigation }) => {
 
     // Functions
-    const nextButton = () => {
-        navigation.navigate('SubRegist_2')
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastname] = useState('');
+
+
+    const handleNext = async () => {  
+
+      
+          navigation.navigate('SubRegist_2');   
     }
 
     // Screen
@@ -28,7 +33,7 @@ const SubRegisterScreen_1 = ({ navigation }) => {
         <View style={styles.secondContentContainer}>
         <Text style={styles.topic}>{stringTH.subreg_message1}</Text> 
         <View style={styles.buttonContainer}>
-        <Button1 text={stringTH.ok2} onPress={nextButton}></Button1>
+        <Button1 text={stringTH.ok2} onPress={handleNext}></Button1>
         </View>
         </View>
 
