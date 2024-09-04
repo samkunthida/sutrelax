@@ -1,6 +1,5 @@
-import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
-import React from 'react'
-import { useState } from 'react';
+import { View, StyleSheet,TextInput} from 'react-native'
+import { useState, React } from 'react';
 
 //import factors
 import colors from '../factors/colors'
