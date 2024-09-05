@@ -1,21 +1,23 @@
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
 
-//import factors
+// import factors
 import colors from './factors/colors'
 import stringTH from './factors/strings'
 import ROUTES from './factors/routes'
 
-//import dependencies
+// import dependencies
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 
-//Navigation Variables
+
+// Navigation Variables
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
 
 export class App extends Component {
   render() {
