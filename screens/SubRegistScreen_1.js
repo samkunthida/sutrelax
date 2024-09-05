@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import { useState, React } from 'react';
 //import factors
 import colors from '../factors/colors'
 import stringTH from '../factors/strings'
 import images from '../factors/images';
+import { Alert } from 'react-native';
 
 //import components
 import Button1 from '../components/Button1';
@@ -11,18 +12,13 @@ import Button1 from '../components/Button1';
 const SubRegisterScreen_1 = ({ navigation }) => {
 
     // Functions
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastname] = useState('');
-
-
     const handleNext = async () => {  
-
-      
-          navigation.navigate('SubRegist_2');   
+          navigation.navigate('SubRegist_2');  
     }
 
     // Screen
     return (
+
       <View style={styles.container}>
 
 
@@ -36,9 +32,8 @@ const SubRegisterScreen_1 = ({ navigation }) => {
         <Button1 text={stringTH.ok2} onPress={handleNext}></Button1>
         </View>
         </View>
-
-
         </View>
+
     )
 }
 
@@ -56,6 +51,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       topic: {
+        marginTop: 380,
         fontFamily: 'Kanit-Regular',
         fontSize: 20,
         color: colors.sut_darkblue,
