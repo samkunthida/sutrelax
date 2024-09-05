@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
+import { Alert } from 'react-native';
 
 //import libs
-import axios from 'axios'; 
+import axios from 'axios';
 
 //import factors
 import colors from '../factors/colors'
@@ -11,7 +12,6 @@ import stringTH from '../factors/strings'
 
 //import components
 import Button1 from '../components/Button1';
-import { Feather } from '@expo/vector-icons';
 
 const RegisterScreen = ({ navigation }) => {
 
@@ -22,6 +22,8 @@ const RegisterScreen = ({ navigation }) => {
     const [passwordVerify, setPasswordVerify] = useState('false');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [passwordComfirmVerify, setPasswordConfirmVerify] = useState('false');
+
+    const isButtonDisabled = !(emailVerify && passwordVerify && passwordComfirmVerify);
 
     // Verify true = valid && false = invalid
     // Email Text Input Handle
@@ -39,29 +41,46 @@ const RegisterScreen = ({ navigation }) => {
     // Password Text Input Handle
     const handlePassword = (text) => {
         setPassword(text);
+        validatePassword(text)
+    };
+    // Password Comfirm Text Input Handle
+    const handlePasswordConfirm = (text) => {
+        setPasswordConfirm(text);
+        validatePasswordConfirm(text);
     };
     // Password Validation
-    const validatePassword = () => {
-        if (password.length >= 8) {
+    const validatePassword = (passwordtext) => {
+        if (passwordtext.length >= 8) {
             setPasswordVerify(true);
         }else{
             setPasswordVerify(false);
         }
-    };
-    // Password Comfirm Text Input Handle
-    const handlePasswordConfirm = (text) => {
-        setPasswordConfirm(text)
+         
     };
     // Password Confirm Validation
-    const validatePasswordConfirm = () =>{
-
-    }
+    const validatePasswordConfirm = (passwordConfirmtext) =>{
+        if (passwordConfirmtext === password) {
+            setPasswordConfirmVerify(true);
+        }else{
+            setPasswordConfirmVerify(false);
+        }
+        }
+    
 
     // Button Register Handle
     const handleRegister = async () => {
-        if (password !== passwordConfirm){
-            Alert.alert(stringTH.passwordNotMatch)
-        } else {
+        if (!email) {
+            Alert.alert("โปรดกรอกอีเมล");
+            return;
+        }
+        if (!password) {
+            Alert.alert("โปรดกรอกรหัสผ่าน");
+            return;
+        }
+        if (!passwordConfirm) {
+            Alert.alert("โปรดกรอกยืนยันรหัสผ่าน");
+            return;
+        }
 
         const userData = {
             firstName: "",
@@ -82,10 +101,10 @@ const RegisterScreen = ({ navigation }) => {
             .post("http://192.168.1.42:8000/registerUser", userData)
             .then(res => {console.log(res.data)
                 if(res.data.status=="ok"){
-                    alert(stringTH.createdAccount)
+                    Alert.alert(stringTH.createdAccount)
                     navigation.navigate('RegSubStack');
                 }else{
-                    alert(JSON.stringify(res.data));
+                    Alert.alert(JSON.stringify(res.data));
                 }
             })
             .catch( e => console.log(e))
@@ -93,7 +112,7 @@ const RegisterScreen = ({ navigation }) => {
             alert(stringTH.fillEmailPassword)
         }
 
-        }
+        
         
     }
     // Screen
@@ -109,21 +128,27 @@ const RegisterScreen = ({ navigation }) => {
                 onChangeText={handleEmail}
                 onBlur={validateEmail} />
 
-                <TextInput style={styles.textinput1}
+                <TextInput style={[styles.textinput1, !passwordVerify && styles.invalidInput]}
                 placeholder={stringTH.password}
                 placeholderTextColor={colors.sut_grey7d}
                 secureTextEntry={true}
                 value={password}
-                onChangeText={handlePassword} />
+                onChangeText={handlePassword}
+                 />
 
-                <TextInput style={styles.textinput1}
+                <TextInput style={[styles.textinput1, !passwordComfirmVerify && styles.invalidInput]}
                 placeholder={stringTH.passwordConfirm}
                 placeholderTextColor={colors.sut_grey7d}
                 secureTextEntry={true}
                 value={passwordConfirm}
-                onChangeText={handlePasswordConfirm}/>
+                onChangeText={handlePasswordConfirm}
+                />
 
-                <Button1 text={stringTH.sentToEmail} onPress={handleRegister}></Button1>
+                <Button1 text={stringTH.sentToEmail}
+                onPress={handleRegister}
+                disabled={isButtonDisabled}
+                />
+
             </View>
         </View>
     )
