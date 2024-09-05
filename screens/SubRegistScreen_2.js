@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native'
 import { useState, React } from 'react';
 
 //import factors
@@ -12,12 +12,33 @@ import Button1 from '../components/Button1';
 const SubRegisterScreen_2 = ({ navigation }) => {
 
     // Functions
-    const nextButton = () => {
-        navigation.navigate('SubRegist_3')
+    const [firstName, setFirstName] = useState('');
+    const [firstNameVerify, setFirstNameVerify] = useState(false);
+    const [lastName, setLastname] = useState('');
+
+    const handleFirstName = (text) => {
+      setFirstName(text);
+    }
+    const validateFirstName = () => {
+      if (firstName && firstName.length >= 2) {
+        setFirstNameVerify(true);
+      }else{
+        setFirstName(false);
+      }
+    }
+
+    const handleNext = async () => {  
+          if (!firstName) {
+            Alert.alert("โปรดกรอกชื่อ ()");
+            return;
+          }
+
+          navigation.navigate('SubRegist_3');  
     }
 
     // Screen
     return (
+      <ScrollView>
       <View style={styles.container}>
         <View style={styles.contentContainer}>
 
@@ -42,12 +63,13 @@ const SubRegisterScreen_2 = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonContainer}>
-        <Button1 text={stringTH.ok2} onPress={nextButton}></Button1>
+        <Button1 text={stringTH.ok2} onPress={handleNext}></Button1>
         </View>
 
         </View>
         </View>
         </View>
+        </ScrollView>
     )
 }
 
@@ -65,6 +87,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       topic: {
+        marginTop: 380,
         fontFamily: 'Kanit-Regular',
         fontSize: 24,
         color: colors.sut_darkblue,
