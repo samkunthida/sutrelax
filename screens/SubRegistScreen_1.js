@@ -11,69 +11,68 @@ import Button1 from '../components/Button1';
 
 const SubRegisterScreen_1 = ({ navigation }) => {
 
-    // Functions
-    const handleNext = async () => {  
-          navigation.navigate('SubRegist_2');  
-    }
+  // Functions
+  const handleNext = async () => {
+    navigation.navigate('SubRegist_2');
+  }
 
-    // Screen
-    return (
+  // Screen
+  return (
 
-      <View style={styles.container}>
-
-
-        <View style={styles.topContainer}>
+    <View style={styles.container}>
+      <View style={styles.contentContainer}>
+      <View style={styles.topContainer}>
         <Image source={images.TOPSUBREG} style={styles.backgroundImage1} />
-        </View>
-        
-        <View style={styles.secondContentContainer}>
-        <Text style={styles.topic}>{stringTH.subreg_message1}</Text> 
+      </View>
+      <View style={styles.secondContentContainer}>
+        <Text style={styles.topic}>{stringTH.subreg_message1}</Text>
         <View style={styles.buttonContainer}>
-        <Button1 text={stringTH.ok2} onPress={handleNext}></Button1>
+          <Button1 text={stringTH.ok2} onPress={handleNext}></Button1>
         </View>
         </View>
-        </View>
+      </View>
+    </View>
 
-    )
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.sut_white,
-        alignItems: 'center',
-        alignContent: 'center'
-      },
-      contentContainer: {
-        width: '100%',
-        paddingTop: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      topic: {
-        marginTop: 380,
-        fontFamily: 'Kanit-Regular',
-        fontSize: 20,
-        color: colors.sut_darkblue,
-        textAlign: 'center'
-      },
-      secondContentContainer: {
-        height: '100%',
-        justifyContent: 'flex-end',
-      },
-      buttonContainer: {
-        marginTop: 250,
-        alignItems: 'center',
-        marginBottom: 65
-      },
-      backgroundImage1: {
-        resizeMode: "contain",
-        width: 420,
-        height: 925,
-        position: 'absolute',
-        top: -300,
-        left: -210,
-      },
+  container: {
+    flex: 1,
+    backgroundColor: colors.sut_white,
+    alignItems: 'center',
+    alignContent: 'center'
+  },
+  contentContainer: {
+    width: '100%',
+    paddingTop: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topic: {
+    marginTop: 380,
+    fontFamily: 'Kanit-Regular',
+    fontSize: 20,
+    color: colors.sut_darkblue,
+    textAlign: 'center'
+  },
+  secondContentContainer: {
+    height: '100%',
+    justifyContent: 'flex-end',
+  },
+  buttonContainer: {
+    marginTop: 250,
+    alignItems: 'center',
+    marginBottom: 65
+  },
+  backgroundImage1: {
+    resizeMode: "contain",
+    width: 420,
+    height: 925,
+    position: 'absolute',
+    top: -300,
+    left: -210,
+  },
 });
 
 export default SubRegisterScreen_1
