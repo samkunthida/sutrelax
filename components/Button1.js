@@ -4,9 +4,12 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 //import factors
 import colors from '../factors/colors'
 
-export default function Button1({ text, onPress, style }) {
+export default function Button1({ text, onPress, style, disabled }) {
     return (
-        <TouchableOpacity onPress={onPress} >
+        <TouchableOpacity
+        style={[disabled && styles.buttonDisabled]}
+        onPress={onPress}
+        disabled={disabled} >
             <View style={[styles.button1, style]}>
                 <Text style={styles.buttonText}> { text } </Text>
             </View>
@@ -29,5 +32,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Kanit-Regular',
         textAlign: 'center'
-    }
+    },
+    buttonDisabled: {
+        opacity: 0.5,
+    },
 });
