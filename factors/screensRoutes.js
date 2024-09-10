@@ -8,9 +8,14 @@ import SubRegistScreen2 from '../screens/SubRegistScreen_2';
 import SubRegistScreen3 from '../screens/SubRegistScreen_3';
 import SubRegistScreen4 from '../screens/SubRegistScreen_4';
 
-import HomeScreen from '../screens/HomeScreen';
-import ExploreScreen from '../screens/ExploreScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import HomeScreen from '../screens/homescreens/HomeScreen';
+import ShakeScreen from '../screens/homescreens/ShakeScreen';
+import myQuestionScreen from '../screens/homescreens/questionscreens/myQuestionScreen';
+import sendQuestionScreen from '../screens/homescreens/questionscreens/sendQuestionScreen';
+import notifyQuestionScreen from '../screens/homescreens/questionscreens/notifyQuestionScreen';
+
+import ExploreScreen from '../screens/explorescreens/ExploreScreen';
+import ProfileScreen from '../screens/profilescreens/ProfileScreen';
 
 const ROUTES = {
   //SCREENS
@@ -26,6 +31,12 @@ const ROUTES = {
     SUBREGIS4: SubRegistScreen4,
 
     HOME: HomeScreen,
+    //ASSESSMENT: AssessmentScreen,
+    SHAKE: ShakeScreen,
+    //MYQUESTION: myQuestionScreen,
+    //SENDQUESTION: sendQuestionScreen,
+    //NOTIFYQUESTION: notifyQuestionScreen,
+
     EXPLORE: ExploreScreen ,
     PROFILE: ProfileScreen,
 

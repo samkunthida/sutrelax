@@ -1,24 +1,26 @@
-import SplashScreen from '../screens/SplashScreen';
-import HomeStack1 from '../stacks/HomeStacks';
+import HomeStacks from '../stacks/HomeStacks';
+import MenuStacks from '../stacks/MenuStacks';
+//import ExploreStacks from '../stacks/ExploreStacks';
+import RegSubStacks from '../stacks/RegSubStacks';
+import ProfileStacks from '../stacks/ProfileStacks';
+import AuthStacks from '../stacks/AuthStacks';
 
 
 const ROUTES = {
-  //SCREENS
-    //ROUTE FOR App.js
-    SPLASH: SplashScreen,
-    HOMESTACK : HomeStack1,
-    REGISTER: RegisterScreen,
-    LOGIN: LoginScreen,
-    FORGETPASSWORD: ForgetPasswordScreen,
+    //ROUTE FOR Tab Navigation
+    MENUSTACKS : MenuStacks,
+    REGSUBSTACKS: RegSubStacks,
+    HOMESTACKS : HomeStacks,
+    //EXPLORESTACKS: ExploreStacks,
+    PROFILESTACKS : ProfileStacks,
+    
+    AUTHSTACKS : AuthStacks,
 
-    SUBREGIS1: SubRegistScreen1,
-    SUBREGIS2: SubRegistScreen2,
-    SUBREGIS3: SubRegistScreen3,
-    SUBREGIS4: SubRegistScreen4,
 
-    HOME: HomeScreen,
-    EXPLORE: ExploreScreen ,
-    PROFILE: ProfileScreen,
+    //ASSESSMENTSTACKS: AssessmentStacks,
+    //SETTINGSRACKS: SettingsStacks,
+    
+    
 
   };
   
