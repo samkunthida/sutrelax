@@ -25,7 +25,6 @@ const HomeScreen = ({ navigation }) => {
       .then(res => console.log(res.data))
   }
 
-
   useEffect(() => {
     getData()
   },[]);

@@ -27,11 +27,12 @@ const LoginScreen = ({ navigation }) => {
     axios
       .post("http://192.168.1.42:8000/loginUser", userData)
       .then(res => {
-        console.log(res.data)
+        console.log(res.data);
         if (res.data.status == "ok") {
           Alert.alert("เข้าสู่ระบบสำเร็จ");
-          AsyncStorage.setItem('token', res.data.data)
-          navigation.navigate('HomeStack')
+          AsyncStorage.setItem('token', res.data.data);
+          AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
+          navigation.navigate('HomeStack');
         }
       });
   }
