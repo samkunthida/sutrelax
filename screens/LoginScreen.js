@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
           Alert.alert("เข้าสู่ระบบสำเร็จ");
           AsyncStorage.setItem('token', res.data.data);
           AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
-          navigation.navigate('HomeStack');
+          navigation.navigate('MenuStack');
         }
       });
   }
