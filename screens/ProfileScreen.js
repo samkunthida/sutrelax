@@ -8,16 +8,21 @@ import stringTH from '../factors/strings'
 //import components
 import Button1 from '../components/Button1'
 
+//import dependencies
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 const ProfileScreen = ({ navigation }) => {
 
-  const doLogout = () =>{
-    navigation.replace('LoginScreen');
+  function handleSignOut() {
+    AsyncStorage.setItem('isLoggedIn', '');
+    AsyncStorage.setItem('token', '');
+    navigation.navigate('LoginScreens');
   }
 
   return (
     <View>
       <Text>Profile Screen</Text>
-      <Button1 style={styles.button} text="ออกจากระบบ" ></Button1>
+      <Button1 style={styles.button} text="ออกจากระบบ" onPress={handleSignOut} ></Button1>
     </View>
   )
 }
