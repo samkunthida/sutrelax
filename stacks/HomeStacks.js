@@ -1,27 +1,25 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// Import your screen components here
-// import HomeScreen from './HomeScreen';
-// import DetailsScreen from './DetailsScreen';
+import screenRoutes from '../factors/screensRoutes';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
-const HomeStack1 = () => {
+const HomeStacks = () => {
     return (
-        <NavigationContainer>
+        <Stack.Navigator>
         <Stack.Screen
-        name="HomeStack"
-        component={HomeStack}
+        name="HomeScreen"
+        component={screenRoutes.HOME}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="RegSubStack"
-        component={RegSubStack}
-        options={{ headerShown: false }}
+        name="ShakeScreen"
+        component={screenRoutes.SHAKE}
+        options={{ title: 'ขอกำลังใจ!' }}
       />
-        </NavigationContainer>
+        </Stack.Navigator>
     );
 };
 
-export default HomeStack1;
+export default HomeStacks;
