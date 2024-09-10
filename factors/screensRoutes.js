@@ -13,6 +13,7 @@ import ExploreScreen from '../screens/ExploreScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 const ROUTES = {
+  //SCREENS
     //ROUTE FOR App.js
     SPLASH: SplashScreen,
     REGISTER: RegisterScreen,
