@@ -1,9 +1,6 @@
 import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native'
-import { useState, React } from 'react';
+import { useState, React, useEffect } from 'react';
 import { Alert } from 'react-native';
-
-//import libs
-import axios from 'axios';
 
 //import factors
 import colors from '../factors/colors'
@@ -13,43 +10,60 @@ import images from '../factors/images';
 //import components
 import Button1 from '../components/Button1';
 
-const SubRegisterScreen_2 = ({ navigation }) => {
+//import dependencies
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const SubRegisterScreen_2 = ({ navigation, route }) => {
 
   // Functions
   const [firstName, setFirstName] = useState('');
-  const [firstNameVerify, setFirstNameVerify] = useState(false);
   const [lastName, setLastname] = useState('');
+  const [token, setToken] = useState('');
+
+  async function getData() {
+    const token = await AsyncStorage.getItem('token')
+    console.log(token)
+    axios
+      .post("http://192.168.1.42:8000/updateUserDetails", { token: token })
+      .then(res => console.log(res.data))
+  }
+
+  useEffect(() => {
+    getData()
+  },[]);
 
   const handleFirstName = (text) => {
     setFirstName(text);
   }
+
+  const handleLastName = (text) => {
+    setLastname(text);
+  }
   const validateFirstName = () => {
-    if (firstName && firstName.length >= 2) {
-      setFirstNameVerify(true);
-    } else {
-      setFirstName(false);
-    }
+
   }
 
   const handleNext = async () => {
-    if (!firstName) {
-      Alert.alert("โปรดกรอกชื่อ");
-      return;
-    }
-    axios
-      .post("http://192.168.1.42:8000/registerUser", userData)
-      .then(res => {
-        console.log(res.data)
-        if (res.data.status == "ok") {
-          Alert.alert(stringTH.createdAccount)
-          navigation.navigate('RegSubStack');
+    try {
+        const response = await axios.post('http://192.168.1.42:8000/updateUserDetails', {
+            firstName,
+            lastName,
+            token
+        });
+        console.log(response.data);
+        if (response.data.status === "ok") {
+          alert("Update successful!");
+          navigation.navigate('SubRegist_3');
         } else {
-          Alert.alert(JSON.stringify(res.data));
+          alert("Update failed: " + response.data.data);
         }
-      })
-      .catch(e => console.log(e))
-    navigation.navigate('SubRegist_3');
-  }
+
+    } catch (error) {
+        console.error(error);
+        Alert.alert('Error', 'An error occurred: ' + error.message);
+    }
+};
 
   const handleNext2 = () => {
     navigation.navigate('SubRegist_3');
@@ -73,16 +87,18 @@ const SubRegisterScreen_2 = ({ navigation }) => {
               <TextInput style={styles.textinput1}
                 placeholder={stringTH.firstName}
                 placeholderTextColor={colors.sut_grey7d}
+                onChangeText={handleFirstName}
               />
               <TextInput style={styles.textinput1}
                 placeholder={stringTH.lastName2}
                 placeholderTextColor={colors.sut_grey7d}
+                onChangeText={handleLastName}
               />
 
             </View>
 
             <View style={styles.buttonContainer}>
-              <Button1 text={stringTH.ok2} onPress={handleNext2}></Button1>
+              <Button1 text={stringTH.ok2} onPress={handleNext}></Button1>
             </View>
 
           </View>
@@ -128,7 +144,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 15,
     marginBottom: 15,
-    color: colors.sut_white,
+    color: colors.sut_darkblue,
     fontFamily: 'Kanit-Regular',
     fontSize: 16
   },

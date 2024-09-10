@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
-import { useState, React } from 'react';
+import { useState, useEffect, React } from 'react';
 //import factors
 import colors from '../factors/colors'
 import stringTH from '../factors/strings'
@@ -9,11 +9,34 @@ import { Alert } from 'react-native';
 //import components
 import Button1 from '../components/Button1';
 
-const SubRegisterScreen_1 = ({ navigation }) => {
+//import dependencies
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const SubRegisterScreen_1 = ({ navigation, route }) => {
+  const user = route?.params?.user || {};
+  const [userData, setUserData] = useState(user);
+  
+  const getData = async () => {
+    try {
+        const token = await AsyncStorage.getItem('token');
+        console.log(token);
+        const res = await axios.post("http://192.168.1.42:8000/updateUserDetails", { token });
+        console.log(res.data);
+        setUserData(res.data.user); // Assuming the response contains user data
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+  useEffect(() => {
+    getData()
+  },[]);
 
   // Functions
   const handleNext = async () => {
-    navigation.navigate('SubRegist_2');
+    navigation.navigate('SubRegist_2', { user: userData });
+    console.log("userData: " + JSON.stringify(userData));
   }
 
   // Screen

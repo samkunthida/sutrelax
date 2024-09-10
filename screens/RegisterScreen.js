@@ -1,87 +1,39 @@
-import { View, Text, StyleSheet, Image, Dimensions, TextInput} from 'react-native'
-import React from 'react'
-import { useState } from 'react';
-import { Alert } from 'react-native';
-
-//import libs
-import axios from 'axios';
-
-//import factors
-import colors from '../factors/colors'
-import stringTH from '../factors/strings'
-
-//import components
+import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
+import colors from '../factors/colors';
+import stringTH from '../factors/strings';
 import Button1 from '../components/Button1';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RegisterScreen = ({ navigation }) => {
-
-    // Variables
     const [email, setEmail] = useState('');
-    const [emailVerify, setEmailVerify] = useState('false');
     const [password, setPassword] = useState('');
-    const [passwordVerify, setPasswordVerify] = useState('false');
     const [passwordConfirm, setPasswordConfirm] = useState('');
-    const [passwordComfirmVerify, setPasswordConfirmVerify] = useState('false');
+    const [emailVerify, setEmailVerify] = useState(false);
+    const [passwordVerify, setPasswordVerify] = useState(false);
+    const [passwordConfirmVerify, setPasswordConfirmVerify] = useState(false);
+    const [user, setUser] = useState('');
 
-    const isButtonDisabled = !(emailVerify && passwordVerify && passwordComfirmVerify);
+    const isButtonDisabled = !(emailVerify && passwordVerify && passwordConfirmVerify);
 
-    // Verify true = valid && false = invalid
-    // Email Text Input Handle
     const handleEmail = (text) => {
         setEmail(text);
+        setEmailVerify(/^[\w.%+-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/.test(text));
     };
-    // Email Validation
-    const validateEmail = () => {
-        if (/^[\w.%+-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-            setEmailVerify(true);
-        } else {
-            setEmailVerify(false);
-        }
-    };
-    // Password Text Input Handle
+
     const handlePassword = (text) => {
         setPassword(text);
-        validatePassword(text)
+        setPasswordVerify(text.length >= 8);
+        setPasswordConfirmVerify(text === passwordConfirm);
     };
-    // Password Comfirm Text Input Handle
+
     const handlePasswordConfirm = (text) => {
         setPasswordConfirm(text);
-        validatePasswordConfirm(text);
+        setPasswordConfirmVerify(text === password);
     };
-    // Password Validation
-    const validatePassword = (passwordtext) => {
-        if (passwordtext.length >= 8) {
-            setPasswordVerify(true);
-        }else{
-            setPasswordVerify(false);
-        }
-         
-    };
-    // Password Confirm Validation
-    const validatePasswordConfirm = (passwordConfirmtext) =>{
-        if (passwordConfirmtext === password) {
-            setPasswordConfirmVerify(true);
-        }else{
-            setPasswordConfirmVerify(false);
-        }
-        }
-    
 
-    // Button Register Handle
     const handleRegister = async () => {
-        if (!email) {
-            Alert.alert("โปรดกรอกอีเมล");
-            return;
-        }
-        if (!password) {
-            Alert.alert("โปรดกรอกรหัสผ่าน");
-            return;
-        }
-        if (!passwordConfirm) {
-            Alert.alert("โปรดกรอกยืนยันรหัสผ่าน");
-            return;
-        }
-
         const userData = {
             firstName: "",
             lastName: "",
@@ -91,68 +43,65 @@ const RegisterScreen = ({ navigation }) => {
             dateCreatedAccount: new Date(),
             email,
             password
-        }
+        };
 
-        if(emailVerify && passwordVerify && passwordComfirmVerify){
-        //http://192.168.1.42/
-        //http://localhost:8000/
-        // Post UserData
-            axios
-            .post("http://192.168.1.42:8000/registerUser", userData)
-            .then(res => {console.log(res.data)
-                if(res.data.status=="ok"){
-                    Alert.alert(stringTH.createdAccount)
-                    navigation.navigate('RegSubStack');
-                }else{
+        if (emailVerify && passwordVerify && passwordConfirmVerify) {
+            try {
+                const res = await axios.post("http://192.168.1.42:8000/registerUser", userData);
+                if (res.data.status === "ok") {
+                    Alert.alert(stringTH.createdAccount);
+                    //const token = res.data.token;
+                    setUser(userData);
+                    await AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
+                    navigation.navigate('RegSubStack', { user: userData });
+                    console.log("userData: " + JSON.stringify(userData));
+                } else {
                     Alert.alert(JSON.stringify(res.data));
                 }
-            })
-            .catch( e => console.log(e))
-        }else{
-            alert(stringTH.fillEmailPassword)
+            } catch (e) {
+                console.log(e + " error unknown caused");
+            }
+        } else {
+            Alert.alert(stringTH.fillEmailPassword);
         }
+    };
 
-        
-        
-    }
-    // Screen
     return (
         <View style={styles.container}>
             <View style={styles.contentContainer}>
-
-                <TextInput style={[styles.textinput1, !emailVerify && styles.invalidInput]}
-                placeholder={stringTH.email}
-                placeholderTextColor={colors.sut_grey7d}
-                keyboardType='email-address'
-                value={email}
-                onChangeText={handleEmail}
-                onBlur={validateEmail} />
-
-                <TextInput style={[styles.textinput1, !passwordVerify && styles.invalidInput]}
-                placeholder={stringTH.password}
-                placeholderTextColor={colors.sut_grey7d}
-                secureTextEntry={true}
-                value={password}
-                onChangeText={handlePassword}
-                 />
-
-                <TextInput style={[styles.textinput1, !passwordComfirmVerify && styles.invalidInput]}
-                placeholder={stringTH.passwordConfirm}
-                placeholderTextColor={colors.sut_grey7d}
-                secureTextEntry={true}
-                value={passwordConfirm}
-                onChangeText={handlePasswordConfirm}
+                <TextInput
+                    style={[styles.textinput1, !emailVerify && styles.invalidInput]}
+                    placeholder={stringTH.email}
+                    placeholderTextColor={colors.sut_grey7d}
+                    keyboardType='email-address'
+                    value={email}
+                    onChangeText={handleEmail}
                 />
-
-                <Button1 text={stringTH.sentToEmail}
-                onPress={handleRegister}
-                disabled={isButtonDisabled}
+                <TextInput
+                    style={[styles.textinput1, !passwordVerify && styles.invalidInput]}
+                    placeholder={stringTH.password}
+                    placeholderTextColor={colors.sut_grey7d}
+                    secureTextEntry={true}
+                    value={password}
+                    onChangeText={handlePassword}
                 />
-
+                <TextInput
+                    style={[styles.textinput1, !passwordConfirmVerify && styles.invalidInput]}
+                    placeholder={stringTH.passwordConfirm}
+                    placeholderTextColor={colors.sut_grey7d}
+                    secureTextEntry={true}
+                    value={passwordConfirm}
+                    onChangeText={handlePasswordConfirm}
+                />
+                <Button1
+                    text={stringTH.sentToEmail}
+                    onPress={handleRegister}
+                    disabled={isButtonDisabled}
+                />
             </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -160,14 +109,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.sut_darkblue,
         alignItems: 'center',
         alignContent: 'center'
-      },
-      contentContainer: {
+    },
+    contentContainer: {
         width: '100%',
         paddingTop: 40,
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      textinput1: {
+    },
+    textinput1: {
         borderColor: colors.sut_grey7d,
         borderWidth: 1,
         height: 45,
@@ -178,10 +127,10 @@ const styles = StyleSheet.create({
         color: colors.sut_white,
         fontFamily: 'Kanit-Regular',
         fontSize: 16
-      },
-      invalidInput: {
+    },
+    invalidInput: {
         borderColor: colors.sut_red,
     },
 });
 
-export default RegisterScreen
+export default RegisterScreen;
