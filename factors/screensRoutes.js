@@ -38,6 +38,8 @@ const ROUTES = {
     //NOTIFYQUESTION: notifyQuestionScreen,
 
     EXPLORE: ExploreScreen ,
+    //ARTICLE: ArticleScreen,
+    //VIDEO: VideoScreen,
     PROFILE: ProfileScreen,
 
   };
