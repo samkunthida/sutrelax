@@ -17,7 +17,6 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   const handleLogin = () => {
     console.log(email, password);
     const userData = {
@@ -33,8 +32,11 @@ const LoginScreen = ({ navigation }) => {
           AsyncStorage.setItem('token', res.data.data);
           AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
           navigation.navigate('MenuStack');
+          setEmail('');
+          setPassword('');
         }
       });
+      
   }
 
   const handleForget = () => {
@@ -50,12 +52,14 @@ const LoginScreen = ({ navigation }) => {
           placeholder={stringTH.email}
           placeholderTextColor={colors.sut_grey7d}
           keyboardType='email-address'
+          value={email}
           onChangeText={setEmail} />
 
         <TextInput style={styles.textinput1}
           placeholder={stringTH.password}
           placeholderTextColor={colors.sut_grey7d}
           secureTextEntry={true}
+          value={password}
           onChangeText={setPassword} />
 
         <View style={styles.textButtonContainer}>
