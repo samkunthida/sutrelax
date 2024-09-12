@@ -11,18 +11,22 @@ import MenuCard1 from '../../components/MenuCard1';
 import MenuCard2 from '../../components/MenuCard2';
 
 //import dependencies
-import { FontAwesome } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const HomeScreen = ({ navigation }) => {
+
+const [firstName, setFirstName] = useState('')
 
   async function getData() {
     const token = await AsyncStorage.getItem('token')
     console.log(token)
     axios
       .post("http://192.168.1.42:8000/userData", { token: token })
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data);
+        setFirstName(res.data.data.firstName);  // assuming firstName is in the response data
+    })
   }
 
   useEffect(() => {
@@ -44,23 +48,23 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView style={styles.container}>
       <View style={styles.contentContainer}>
         <View style={styles.toptext}>
-          <Text style={styles.topic}> {stringTH.home_greeting + "{FirstName}"} </Text>
+          <Text style={styles.topic}> {stringTH.home_greeting + firstName} </Text>
         </View>
 
         <View style={styles.menuContainer1}>
           <Text style={styles.menuTopic}>{stringTH.menu}</Text>
-          <MenuCard1 text={stringTH.assess} onPress={menuAction1}></MenuCard1>
-          <MenuCard1 style={styles.menu2} text={stringTH.assessmentHistory} onPress={menuAction1}></MenuCard1>
-          <MenuCard1 style={styles.menu3} text={stringTH.askForEncourage} onPress={shakeMenuHandler}></MenuCard1>
+          <MenuCard1 text={stringTH.assess} onPress={menuAction1} icon= "clipboard-list" iconColor={colors.sut_secondary}></MenuCard1>
+          <MenuCard1 style={styles.menu2} text={stringTH.assessmentHistory} onPress={menuAction1} icon= "clock-rotate-left" iconColor={colors.sut_lightpurple}></MenuCard1>
+          <MenuCard1 style={styles.menu3} text={stringTH.askForEncourage} onPress={shakeMenuHandler} icon= "heart-circle-bolt" iconColor={colors.sut_lightblue}></MenuCard1>
         </View>
 
         <View style={styles.menuContainer3}>
           <Text style={styles.menuTopic}>{stringTH.message}</Text>
         </View>
         <View style={styles.menuContainer2}>
-          <MenuCard2 style={styles.menu4} text={stringTH.myQuestion} onPress={menuAction2}></MenuCard2>
-          <MenuCard2 style={styles.menu4} text={stringTH.askQuestion} onPress={menuAction2}></MenuCard2>
-          <MenuCard2 style={styles.menu4} text={stringTH.notiQuestion} onPress={menuAction2}></MenuCard2>
+          <MenuCard2 style={styles.menu4} text={stringTH.myQuestion} onPress={menuAction2} icon= "envelope" iconColor={colors.sut_white}></MenuCard2>
+          <MenuCard2 style={styles.menu4} text={stringTH.askQuestion} onPress={menuAction2} icon= "paper-plane" iconColor={colors.sut_white}></MenuCard2>
+          <MenuCard2 style={styles.menu4} text={stringTH.notiQuestion} onPress={menuAction2} icon= "bell" iconColor={colors.sut_white}></MenuCard2>
         </View>
 
         <View style={styles.bottomContainer}>
