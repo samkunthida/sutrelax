@@ -1,14 +1,58 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 
 //import factors
 import colors from '../../factors/colors'
 import stringTH from '../../factors/strings'
+import exploreRoutes from '../../factors/exploreRoutes'
 
-export default function ExploreScreen() {
+//import components
+import MenuCard1 from '../../components/MenuCard1';
+
+//import dependencies
+
+export default function ExploreScreen( {navigation} ) {
+
+  handleArticle = () => {
+    navigation.navigate('ArticlesScreen');
+  }
+
+  handleVideo = () => {
+    //navigation.navigate('VideoScreen');
+  }
+
   return (
-    <View>
-      <Text>Explore Screen</Text>
-    </View>
+    //I made it hardcode for now, will change it later
+    <ScrollView style={styles.container}>
+      <View style={styles.contentContainer}>
+        <View style={styles.menuContainer1}>
+          <MenuCard1 style={styles.menu} text ="บทความ" onPress={handleArticle}></MenuCard1>
+          <MenuCard1 style={styles.menu} text="วิดีโอ" onPress={handleVideo}></MenuCard1>
+        </View>
+      </View>
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.sut_white,
+    alignContent: 'center',
+
+  },
+  contentContainer: {
+    width: '100%',
+    paddingTop: 40,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 20,
+  },
+  menuContainer1: {
+    width: '100%'
+  },
+  menu: {
+    backgroundColor: colors.sut_darkblue,
+  }
+});
