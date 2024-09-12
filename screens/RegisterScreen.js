@@ -38,9 +38,9 @@ const RegisterScreen = ({ navigation }) => {
             firstName: "",
             lastName: "",
             profileImage: "",
-            dateOfBirth: new Date(),
+            dateOfBirth: new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' }),
             gender: "unknown",
-            dateCreatedAccount: new Date(),
+            dateCreatedAccount: new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' }),
             email,
             password
         };
@@ -50,10 +50,11 @@ const RegisterScreen = ({ navigation }) => {
                 const res = await axios.post("http://192.168.1.42:8000/registerUser", userData);
                 if (res.data.status === "ok") {
                     Alert.alert(stringTH.createdAccount);
-                    //const token = res.data.token;
+                    const token = res.data.token;
                     setUser(userData);
+                    await AsyncStorage.setItem('userData', JSON.stringify(userData));
                     await AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
-                    navigation.navigate('RegSubStack', { user: userData });
+                    navigation.navigate('SubRegist_1', { user: userData }, { token: token });
                     console.log("userData: " + JSON.stringify(userData));
                 } else {
                     Alert.alert(JSON.stringify(res.data));
