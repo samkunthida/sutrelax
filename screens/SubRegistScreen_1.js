@@ -14,19 +14,23 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SubRegisterScreen_1 = ({ navigation, route }) => {
+  console.log("Route Params: ", route.params); // Log route params
   const user = route?.params?.user || {};
   const [userData, setUserData] = useState(user);
   
   const getData = async () => {
     try {
-        const token = await AsyncStorage.getItem('token');
-        console.log(token);
-        const res = await axios.post("http://192.168.1.42:8000/updateUserDetails", { token });
-        console.log(res.data);
-        setUserData(res.data.user); // Assuming the response contains user data
-    } catch (error) {
+        //const token = await AsyncStorage.getItem('token');
+        //console.log("token: ", token);
+        // const res = await axios.post("http://192.168.1.42:8000/updateUserDetails", userData);
+        // console.log("res.user: ", res.user);
+        // console.log("res.data.user: ", res.data.user);
+        // console.log("user: ", user);
+        setUserData(user); // Assuming the response contains user data
+        console.log("user", user);
+      } catch (error) {
         console.error(error);
-    }
+      }
 };
 
   useEffect(() => {
