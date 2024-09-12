@@ -5,8 +5,8 @@ import colors from '../factors/colors';
 import stringTH from '../factors/strings';
 import { FontAwesome } from '@expo/vector-icons';
 
-import screenRoutes from '../factors/screensRoutes';
 import HOMESTACKS from './HomeStacks';
+import EXPLORESTACKS from './ExploreStacks';
 import PROFILESTACKS from './ProfileStacks';
 
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ const MenuStacks = () => {
             />
             <Tab.Screen
                 name="Explore"
-                component={screenRoutes.EXPLORE}
+                component={EXPLORESTACKS}
                 options={{
                     tabBarLabel: stringTH.exploer,
                     headerTitle: stringTH.exploer,

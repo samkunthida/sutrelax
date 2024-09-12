@@ -6,7 +6,7 @@ import screenRoutes from '../factors/screensRoutes';
 const Stack = createNativeStackNavigator();
 
 const RegSubStacks = (route) => {
-    const { user } = route.params;
+  const user = route?.params?.user || {}; 
     return (
         <Stack.Navigator>
       <Stack.Screen
