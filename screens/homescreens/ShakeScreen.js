@@ -9,18 +9,41 @@ import images from '../../factors/images'
 import Button1 from '../../components/Button1';
 import { useEffect } from 'react';
 import { Accelerometer } from 'expo-sensors';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ShakeScreen = () => {
-
-
 
     const [text, setText] = useState('');
     const [shake, setShake] = useState(false);
     const randomText = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o"];
 
+    const [quote, setQuote] = useState('');
+
+    const getData = async () => {
+        const token = await AsyncStorage.getItem('token');
+        console.log(token);
+        axios
+          .post('http://192.168.1.42:8000/quoteData', { token: token })
+          .then(res => {
+              console.log(res.data);
+              setQuote(res.data.data.q_text);  // Access the quote text
+          })
+          .catch(error => {
+              console.error("Error fetching quote:", error);
+          });
+    }    
+    
+      useEffect(() => {
+        getData()
+      },[]);
+
     const handleShake = () => {
-        const randomIndex = Math.floor(Math.random() * randomText.length);
-        setText(randomText[randomIndex]);
+        //const randomIndex = Math.floor(Math.random() * randomText.length);
+        //setText(randomText[randomIndex]);
+        console.log("Quote", quote);  // Should display the random quote
+        setText(quote);
+        getData()
     }
 
     useEffect(() => {
