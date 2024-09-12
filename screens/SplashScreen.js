@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, Dimensions} from 'react-native'
-import { useState, React } from 'react'
+import { useState, useCallback, React } from 'react'
 
 //import factors
 import colors from '../factors/colors'
@@ -8,6 +8,7 @@ import images from '../factors/images'
 
 //import components
 import Button1 from '../components/Button1'
+import { useFocusEffect } from '@react-navigation/native'
 
 const SplashScreen = ({ navigation }) => {
 
@@ -18,6 +19,20 @@ const LoginButton = () => {
 const RegisterButton = () => {
   navigation.navigate('Register');
 }
+
+useFocusEffect(
+  useCallback(() => {
+    navigation.getParent()?.setOptions({
+      tabBarStyle: { display: 'none' }
+    });
+
+    return () => {
+      navigation.getParent()?.setOptions({
+          tabBarStyle: [styles.tabBar, { backgroundColor:'#F0DFC8' }],
+      });
+    };
+  }, [navigation])
+);
 
   // Screen
   return (
