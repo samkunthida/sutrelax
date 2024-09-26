@@ -18,6 +18,26 @@ const HomeStacks = () => {
         component={screenRoutes.SHAKE}
         options={{ title: 'ขอกำลังใจ!' }}
       />
+      <Stack.Screen
+        name="AssessmentScreen"
+        component={screenRoutes.ASSESSMENT}
+        options={{ title: 'เลือกแบบประเมิน' }}
+      />
+      <Stack.Screen
+        name="MyQuestionScreen"
+        component={screenRoutes.MYQUESTION}
+        options={{ title: 'คำถาม' }}
+      />
+      <Stack.Screen
+        name="NotifyQuestionScreen"
+        component={screenRoutes.NOTIFYQUESTION}
+        options={{ title: 'สร้างคำถาม' }}
+      />
+      <Stack.Screen
+        name="SendQuestionScreen"
+        component={screenRoutes.SENDQUESTION}
+        options={{ title: 'แจ้งเตือน' }}
+      />
         </Stack.Navigator>
     );
 };
