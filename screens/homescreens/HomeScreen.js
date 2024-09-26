@@ -38,11 +38,23 @@ const [firstName, setFirstName] = useState('')
   }
 
   const menuAction1 = () => {
-    //navigation.navigate(' ')
+    navigation.navigate('AssessmentScreen')
   }
   const menuAction2 = () => {
     //navigation.navigate(' ')
   }
+  const myQuestionHandle= () => {
+    navigation.navigate('MyQuestionScreen')
+  }
+
+  const askQuestionHandle = () => {
+    navigation.navigate('SendQuestionScreen')
+  }
+
+  const notiQuestionHandle = () => {
+    navigation.navigate('NotifyQuestionScreen')
+  }
+
 
   return (
     <ScrollView style={styles.container}>
@@ -62,9 +74,9 @@ const [firstName, setFirstName] = useState('')
           <Text style={styles.menuTopic}>{stringTH.message}</Text>
         </View>
         <View style={styles.menuContainer2}>
-          <MenuCard2 style={styles.menu4} text={stringTH.myQuestion} onPress={menuAction2} icon= "envelope" iconColor={colors.sut_white}></MenuCard2>
-          <MenuCard2 style={styles.menu4} text={stringTH.askQuestion} onPress={menuAction2} icon= "paper-plane" iconColor={colors.sut_white}></MenuCard2>
-          <MenuCard2 style={styles.menu4} text={stringTH.notiQuestion} onPress={menuAction2} icon= "bell" iconColor={colors.sut_white}></MenuCard2>
+          <MenuCard2 style={styles.menu4} text={stringTH.myQuestion} onPress={myQuestionHandle} icon= "envelope" iconColor={colors.sut_white}></MenuCard2>
+          <MenuCard2 style={styles.menu4} text={stringTH.askQuestion} onPress={askQuestionHandle} icon= "paper-plane" iconColor={colors.sut_white}></MenuCard2>
+          <MenuCard2 style={styles.menu4} text={stringTH.notiQuestion} onPress={notiQuestionHandle} icon= "bell" iconColor={colors.sut_white}></MenuCard2>
         </View>
 
         <View style={styles.bottomContainer}>
