@@ -16,7 +16,7 @@ const ShakeScreen = () => {
 
     const [text, setText] = useState('');
     const [shake, setShake] = useState(false);
-    const randomText = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o"];
+    const randomText = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"];
 
     const [quote, setQuote] = useState('');
 
@@ -24,19 +24,19 @@ const ShakeScreen = () => {
         const token = await AsyncStorage.getItem('token');
         console.log(token);
         axios
-          .post('http://192.168.1.42:8000/quoteData', { token: token })
-          .then(res => {
-              console.log(res.data);
-              setQuote(res.data.data.q_text);  // Access the quote text
-          })
-          .catch(error => {
-              console.error("Error fetching quote:", error);
-          });
-    }    
-    
-      useEffect(() => {
+            .post('http://192.168.1.42:8000/quoteData', { token: token })
+            .then(res => {
+                console.log(res.data);
+                setQuote(res.data.data.q_text);  // Access the quote text
+            })
+            .catch(error => {
+                console.error("Error fetching quote:", error);
+            });
+    }
+
+    useEffect(() => {
         getData()
-      },[]);
+    }, []);
 
     const handleShake = () => {
         //const randomIndex = Math.floor(Math.random() * randomText.length);
@@ -71,15 +71,15 @@ const ShakeScreen = () => {
     return (
         <View style={styles.container}>
 
-            <View style={styles.topic1}>
-            <Text style={styles.topic1}>{'" ' + text + ' "'}</Text>
+            <View style={styles.section1}>
+                <Text style={styles.topic1}>{'" ' + text + ' "'}</Text>
             </View>
-            <View>
-            <Text style={styles.topic2}>{"ลองเขย่าดูสิ"}</Text>
-            <Text>หรือ</Text>
-            <Button1 style={styles.button} text="กดขอกำลังใจ" onPress={handleShake} ></Button1>
+            <View style={styles.section2}>
+                <Text style={styles.topic2}>{"ลองเขย่าดูสิ"}</Text>
+                <Text style={styles.orText}>หรือ</Text>
+                <Button1 style={styles.button} text="กดขอกำลังใจ" onPress={handleShake} ></Button1>
             </View>
-            
+
         </View>
     );
 };
@@ -95,23 +95,36 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 16,
     },
+    section1: {
+        marginTop: 270
+    },
     topic1: {
         fontFamily: 'Kanit-Medium',
         fontSize: 20,
         textAlign: 'center',
         color: colors.sut_darkblue,
-        paddingBottom: 15
-      },
-      topic2: {
+    },
+    topic2: {
         fontFamily: 'Kanit-Medium',
-        fontSize: 20,
+        fontSize: 24,
         textAlign: 'center',
         color: colors.sut_darkblue,
-        paddingBottom: 15
-      },
-      button: {
+        marginBottom: 10
+    },
+    button: {
         backgroundColor: colors.sut_primary
-      }
+    },
+    orText: {
+        textAlign: 'center',
+        fontFamily: 'Kanit-Regular',
+        color: colors.sut_grey7d,
+        marginBottom: 10,
+        fontSize: 16
+    },
+    section2: {
+        marginTop: 250
+    }
+
 });
 
 export default ShakeScreen;
