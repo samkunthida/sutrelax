@@ -11,7 +11,8 @@ const colors = {
     sut_lightblue:"#75A0FC",
     sut_purple: "#A430E7",
     sut_lightpurple: "#C66FF8",
-    sut_red: "#F83F3F"
+    sut_red: "#F83F3F",
+    sut_brown: "#796850"
 
 }
 
