@@ -10,12 +10,14 @@ import SubRegistScreen4 from '../screens/SubRegistScreen_4';
 
 import HomeScreen from '../screens/homescreens/HomeScreen';
 import ShakeScreen from '../screens/homescreens/ShakeScreen';
-import myQuestionScreen from '../screens/homescreens/questionscreens/myQuestionScreen';
-import sendQuestionScreen from '../screens/homescreens/questionscreens/sendQuestionScreen';
-import notifyQuestionScreen from '../screens/homescreens/questionscreens/notifyQuestionScreen';
+import MyQuestionScreen from '../screens/homescreens/questionscreens/MyQuestionScreen';
+import SendQuestionScreen from '../screens/homescreens/questionscreens/SendQuestionScreen';
+import NotifyQuestionScreen from '../screens/homescreens/questionscreens/NotifyQuestionScreen';
 
 import ExploreScreen from '../screens/explorescreens/ExploreScreen';
 import ProfileScreen from '../screens/profilescreens/ProfileScreen';
+
+import AssessmentScreen from '../screens/homescreens/assessmentscreens/AssessmentChooseScreen';
 
 const ROUTES = {
   //SCREENS
@@ -31,11 +33,11 @@ const ROUTES = {
     SUBREGIS4: SubRegistScreen4,
 
     HOME: HomeScreen,
-    //ASSESSMENT: AssessmentScreen,
+    ASSESSMENT: AssessmentScreen,
     SHAKE: ShakeScreen,
-    //MYQUESTION: myQuestionScreen,
-    //SENDQUESTION: sendQuestionScreen,
-    //NOTIFYQUESTION: notifyQuestionScreen,
+    MYQUESTION: MyQuestionScreen,
+    SENDQUESTION: SendQuestionScreen,
+    NOTIFYQUESTION: NotifyQuestionScreen,
 
     EXPLORE: ExploreScreen ,
     //ARTICLE: ArticleScreen,
