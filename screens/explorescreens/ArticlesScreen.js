@@ -48,7 +48,7 @@ export default function ArticleScreen({ navigation }) {
                             key={article._id} 
                             text={article.title}
                             image={coverImage}
-                            onPress={() => navigation.navigate('ArticleDetail', { articleId: article._id })}
+                            onPress={() => navigation.navigate('ArticleDetailScreen', { articleId: article._id })}
                             style={styles.menu}
                         />
                     ))}
