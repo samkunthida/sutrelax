@@ -40,8 +40,7 @@ const MenuStacks = () => {
                 component={EXPLORESTACKS}
                 options={{
                     tabBarLabel: stringTH.exploer,
-                    headerTitle: stringTH.exploer,
-                    headerShown: true,
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="cubes" size={size} color={color} />
                     ),
