@@ -114,7 +114,7 @@ const ProfileScreen = ({ navigation }) => {
       <Text style={styles.dateText}>{"เข้าร่วมเมื่อ " + dateCreatedAccount}</Text>
       </View>
 
-      <View style={styles.menuContainer1}>
+      <View style={styles.menuContainer}>
           <Text style={styles.menuTopic}>ติดตามผลการประเมิน</Text>
           <MenuCard1 style={styles.menu1} text={stringTH.assessmentHistory} onPress={menuAction1} icon= "clock-rotate-left" iconColor={colors.sut_white}></MenuCard1>
       </View>
@@ -225,6 +225,9 @@ const styles = StyleSheet.create({
       fontFamily: 'Kanit-Regular',
       color: colors.sut_grey7d
     },
+    menuContainer: {
+      width: '100%',
+    },
     menuContainer1: {
       width: '100%',
     },
@@ -233,14 +236,17 @@ const styles = StyleSheet.create({
       fontSize: 20,
       color: colors.sut_darkblue,
       textAlign: 'left',
+      marginLeft: 20,
     },
     menu1: {
       backgroundColor: colors.sut_darkblue,
+      alignSelf: 'center',
     },
     chartTopic: {
-      fontFamily: 'Kanit-Regular',
+      fontFamily: 'Kanit-Medium',
       color: colors.sut_darkblue,
-      marginTop: 10
+      marginTop: 10,
+      marginLeft: 20,
     },
     chartSection: {
       marginLeft: 10,
