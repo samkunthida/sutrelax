@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Image, Dimensions, TextInput, Pressable} from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions, TextInput, TouchableOpacity} from 'react-native'
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 //import factors
@@ -11,15 +11,73 @@ import images from '../factors/images';
 //import components
 import Button1 from '../components/Button1';
 
-const SubRegisterScreen_4 = ({ navigation }) => {
+//import dependencies
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-    //useState Declaration
-    const [dateOfBirth, setDateofBirth] = useState("");
-    
+const SubRegisterScreen_4 = ({ navigation, route }) => {
 
+    const [token, setToken] = useState('');
+    const user = route?.params?.user || {};
+    const [userData, setUserData] = useState(user);
+    const [dateOfBirth, setDateOfBirth] = useState(null);
+    const [show, setShow] = useState(false);
 
+    useEffect(() => {
+      const getData = async () => {
+        try {
+          const token = await AsyncStorage.getItem('token');
+          setToken(token);
+          console.log("token", token);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getData();
+    }, []);
 
-    const nextButton = () => {
+    const updateUserDetails = async (newDate) => {
+      try {
+        const response = await axios.post('http://192.168.1.42:8000/updateUserDateOfBirth', {
+          dateOfBirth: newDate,
+          token
+        });
+        console.log(response.data);
+        if (response.data.status === "Ok") {
+          setUserData(prevUserData => ({
+            ...prevUserData,
+            dateOfBirth: newDate
+          }));
+          //alert("Update successful!");
+          navigation.navigate('SubRegist_4', { user: { ...userData, dateOfBirth: newDate } });
+        } else {
+          alert("Update failed: " + response.data.data);
+        }
+      } catch (error) {
+        console.error(error);
+        Alert.alert('Error', 'An error occurred: ' + error.message);
+      }
+    };
+
+    const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || dateOfBirth;
+      setShow(false);
+      setDateOfBirth(currentDate);
+    }
+
+    const showDatepicker = () => {
+      setShow(true);
+    }
+    const formatDate = (dateOfBirth) => {
+      let day = dateOfBirth.getDate().toString().padStart(2, '0');
+      let month = (dateOfBirth.getMonth() + 1).toString().padStart(2, '0');
+      let year = (dateOfBirth.getFullYear() + 543).toString(); 
+  
+      return `${day}/${month}/${year}`;
+    };
+
+    const nextButton = async () => {
+        await updateUserDetails(dateOfBirth);
         navigation.navigate('MenuStack')
     }
 
@@ -28,11 +86,28 @@ const SubRegisterScreen_4 = ({ navigation }) => {
         <View style={styles.container}>
         <View style={styles.contentContainer}>
 
-        <View style={styles.topContainer}>
+        <View>
         <Image source={images.TOPSUBREG} style={styles.backgroundImage1} />
         </View>
 
-            <Text style={styles.topic}>วันเดือนปีเกิดของคุณ?</Text>
+        <Text style={styles.topic}>วันเดือนปีเกิดของคุณ?</Text>
+        <TouchableOpacity onPress={showDatepicker}>
+          <TextInput
+          style={styles.textinput1}
+          value={dateOfBirth ? formatDate(dateOfBirth) : 'dd/mm/yyyy'}
+          editable={false} 
+          pointerEvents="none"
+          />
+        </TouchableOpacity>
+
+        {show && (
+        <DateTimePicker
+          value={dateOfBirth || new Date()}
+          mode="date"
+          display="default"
+          onChange={onChange}
+        />
+        )}
 
 
 
@@ -71,10 +146,10 @@ const styles = StyleSheet.create({
         height: 45,
         width: 175,
         borderRadius: 10,
-        paddingLeft: 15,
         marginBottom: 15,
-        color: colors.sut_white,
-        fontFamily: 'Kanit-Regular',
+        color: colors.sut_grey7d,
+        textAlign: 'center',
+        fontFamily: 'Kanit-Medium',
         fontSize: 16
       },
       backgroundImage1: {

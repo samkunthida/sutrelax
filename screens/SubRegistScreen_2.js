@@ -58,7 +58,7 @@ const SubRegisterScreen_2 = ({ navigation, route }) => {
           firstName,
           lastName
         });
-        alert("Update successful!");
+        //alert("Update successful!");
         navigation.navigate('SubRegist_3', { user: userData });
       } else {
         alert("Update failed: " + response.data.data);
