@@ -9,6 +9,7 @@ import SubRegistScreen3 from '../screens/SubRegistScreen_3';
 import SubRegistScreen4 from '../screens/SubRegistScreen_4';
 
 import HomeScreen from '../screens/homescreens/HomeScreen';
+import AssessmentHistoryScreen from '../screens/homescreens/AssessmentHistoryScreen';
 import ShakeScreen from '../screens/homescreens/ShakeScreen';
 import MyQuestionScreen from '../screens/homescreens/questionscreens/MyQuestionScreen';
 import SendQuestionScreen from '../screens/homescreens/questionscreens/SendQuestionScreen';
@@ -18,6 +19,7 @@ import ExploreScreen from '../screens/explorescreens/ExploreScreen';
 import ProfileScreen from '../screens/profilescreens/ProfileScreen';
 
 import AssessmentScreen from '../screens/homescreens/assessmentscreens/AssessmentChooseScreen';
+import AssessmentQuestionScreen from '../screens/homescreens/assessmentscreens/AssessmentQuestionScreen';
 
 const ROUTES = {
   //SCREENS
@@ -34,7 +36,9 @@ const ROUTES = {
 
     HOME: HomeScreen,
     ASSESSMENT: AssessmentScreen,
+    ASSESSMENTQUESTION: AssessmentQuestionScreen,
     SHAKE: ShakeScreen,
+    ASSESSMENTHISTORY: AssessmentHistoryScreen,
     MYQUESTION: MyQuestionScreen,
     SENDQUESTION: SendQuestionScreen,
     NOTIFYQUESTION: NotifyQuestionScreen,
