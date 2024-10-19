@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import axios from 'axios';
 
 // Import components and styles
