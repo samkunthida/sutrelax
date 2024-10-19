@@ -25,7 +25,7 @@ const [firstName, setFirstName] = useState('')
       .post("http://192.168.1.42:8000/userData", { token: token })
       .then(res => {
         console.log(res.data);
-        setFirstName(res.data.data.firstName);  // assuming firstName is in the response data
+        setFirstName(res.data.data.firstName);
     })
   }
 
@@ -41,7 +41,7 @@ const [firstName, setFirstName] = useState('')
     navigation.navigate('AssessmentScreen')
   }
   const menuAction2 = () => {
-    //navigation.navigate(' ')
+    navigation.navigate('AssessmentHistoryScreen')
   }
   const myQuestionHandle= () => {
     navigation.navigate('MyQuestionScreen')
@@ -66,7 +66,7 @@ const [firstName, setFirstName] = useState('')
         <View style={styles.menuContainer1}>
           <Text style={styles.menuTopic}>{stringTH.menu}</Text>
           <MenuCard1 text={stringTH.assess} onPress={menuAction1} icon= "clipboard-list" iconColor={colors.sut_secondary}></MenuCard1>
-          <MenuCard1 style={styles.menu2} text={stringTH.assessmentHistory} onPress={menuAction1} icon= "clock-rotate-left" iconColor={colors.sut_lightpurple}></MenuCard1>
+          <MenuCard1 style={styles.menu2} text={stringTH.assessmentHistory} onPress={menuAction2} icon= "clock-rotate-left" iconColor={colors.sut_lightpurple}></MenuCard1>
           <MenuCard1 style={styles.menu3} text={stringTH.askForEncourage} onPress={shakeMenuHandler} icon= "heart-circle-bolt" iconColor={colors.sut_lightblue}></MenuCard1>
         </View>
 
