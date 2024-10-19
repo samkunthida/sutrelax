@@ -10,7 +10,7 @@ export default function MenuCard1({ text, onPress, style, icon, iconColor }) {
         <TouchableOpacity onPress={onPress} >
             <View style={[styles.button1, style]}>
                 <View style={styles.iconContainer}>
-                <FontAwesome6 name={icon} size={60} color={iconColor} />
+                <FontAwesome6 name={icon} size={55} color={iconColor} />
                 </View>
                 <Text style={styles.buttonText}>
                     {text}
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center'
     },
     iconContainer: {
+        marginLeft: 5,
         justifyContent: 'center',
         alignItems: 'center',
     }
