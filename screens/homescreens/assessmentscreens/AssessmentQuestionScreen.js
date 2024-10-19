@@ -5,12 +5,13 @@ import colors from '../../../factors/colors';
 
 //import components
 import MenuCard3 from '../../../components/MenuCard3';
+import Button1 from '../../../components/Button1';
 
 //import dependencies
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AssessmentQuestionScreen = ({ route }) => {
+const AssessmentQuestionScreen = ({ navigation, route }) => {
     const { questions, assessmentTitle, assessmentID } = route.params;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedChoice, setSelectedChoice] = useState(null);
@@ -64,12 +65,32 @@ const AssessmentQuestionScreen = ({ route }) => {
         }
     };
 
+    const handleNext = () => {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Home' }],  // 'NewScreen' คือชื่อของหน้าที่ต้องการจะนำทางไป
+      });
+    };
+
     if (currentQuestionIndex >= questions.length) {
         return (
             <View style={styles.container}>
-                <Text>{assessmentTitle}</Text>
-                <Text>ผลลัพธ์ของคุณ</Text>
+              <View style={styles.topicContainer}>
+                <Text style={styles.topic}>{assessmentTitle}</Text>
+              </View>
+
+              <View style={styles.pointContainer}>
                 <Text style={styles.scoreText}>{totalScore} คะแนน</Text>
+              </View>
+
+                <View style={styles.belowTextContainer}>
+                  <Text style={styles.belowText}>การทำแบบประเมินทำให้คุณรู้จักใจตัวเองมากยิ่งขึ้น \n ลอง 'สำรวจ' ใน 'บทความ' และ 'วิดีโอ' เพิ่มเติมดูสิ</Text>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                <Button1 text="โอเค" onPress={handleNext} ></Button1>
+                </View>
+
             </View>
         );
     }
@@ -93,8 +114,8 @@ const AssessmentQuestionScreen = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: colors.sut_white,
     },
     questionText: {
         fontSize: 20,
@@ -102,6 +123,52 @@ const styles = StyleSheet.create({
         fontFamily: 'Kanit-Regular',
         color: colors.sut_darkblue,
     },
+    scoreText: {
+        fontSize: 24,
+        fontFamily: 'Kanit-Medium',
+        color: colors.sut_darkblue,
+        textAlign: 'center',
+        backgroundColor: colors.sut_white,
+        width: '100%',
+    },
+    pointContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        borderWidth: 0.5,
+        borderColor: colors.sut_grey7d,
+        width:'90%',
+        height: 200,
+        borderRadius: 10,
+        backgroundColor: colors.sut_brown,
+    },
+    belowText: {
+        fontSize: 14,
+        fontFamily: 'Kanit-Regular',
+        color: colors.sut_darkblue,
+        textAlign: 'center',
+    },
+    belowTextContainer: {
+        marginTop: 30,
+        width: '90%',
+    },
+    topic:{
+        fontSize: 18,
+        fontFamily: 'Kanit-Regular',
+        color: colors.sut_darkblue,
+    },
+    topicContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 50,
+        marginBottom: 50
+    },
+    buttonContainer: {
+      justifyContent: 'flex-end',
+      flex: 1,
+      marginBottom: 30
+    },
+    
 });
 
 export default AssessmentQuestionScreen;
