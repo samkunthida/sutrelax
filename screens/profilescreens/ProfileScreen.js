@@ -44,7 +44,7 @@ const ProfileScreen = ({ navigation }) => {
     getData()
   },[]);
 
-    const yAxisLabels = ['•', '•', '•', '•', '•', '•', '•', '•', '•', 'สูง', '•'];
+    const yAxisLabels = ['•', '•', '•', '•', '•', '•', '•', '•', '•', '•', '•'];
     //hardcode data
     const stressData = [
       { value: 10, label: "Jan" },
@@ -91,12 +91,13 @@ const ProfileScreen = ({ navigation }) => {
       { value: 0, label: "Dec" },
     ];
 
-  const menuAction1 = () => {
-  }
+    const menuAction1 = () => {
+      navigation.navigate('AssessmentHistoryScreen')
+    }
 
-  function handleSignOut() {
-    AsyncStorage.setItem('isLoggedIn', '');
-    AsyncStorage.setItem('token', '');
+  const handleSignOut = async () => {
+    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('isLoggedIn');
     navigation.navigate('Splash');
   }
 
