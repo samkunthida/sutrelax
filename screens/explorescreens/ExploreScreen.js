@@ -26,8 +26,8 @@ export default function ExploreScreen( {navigation} ) {
     <ScrollView style={styles.container}>
       <View style={styles.contentContainer}>
         <View style={styles.menuContainer1}>
-          <MenuCard1 style={styles.menu} text ="บทความ" onPress={handleArticle}></MenuCard1>
-          <MenuCard1 style={styles.menu} text="วิดีโอ" onPress={handleVideo}></MenuCard1>
+          <MenuCard1 style={styles.menu} icon={"newspaper"} text ="บทความ" iconColor={colors.sut_white} onPress={handleArticle}></MenuCard1>
+          <MenuCard1 style={styles.menu} icon={"clapperboard"} iconColor={colors.sut_white} text="วิดีโอ" onPress={handleVideo}></MenuCard1>
         </View>
       </View>
     </ScrollView>
