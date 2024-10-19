@@ -54,7 +54,7 @@ const RegisterScreen = ({ navigation }) => {
                     setUser(userData);
                     await AsyncStorage.setItem('userData', JSON.stringify(userData));
                     await AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
-                    navigation.navigate('SubRegist_1', { user: userData }, { token: token });
+                    navigation.navigate('SubRegist_1', { user: userData, token: token, email, password });
                     console.log("userData: " + JSON.stringify(userData));
                 } else {
                     Alert.alert(JSON.stringify(res.data));

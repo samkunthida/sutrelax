@@ -16,7 +16,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SubRegisterScreen_1 = ({ navigation, route }) => {
   console.log("Route Params: ", route.params); // Log route params
   const user = route?.params?.user || {};
+  const initialEmail = route?.params?.email || '';
+  const initialPassword = route?.params?.password || '';
+
   const [userData, setUserData] = useState(user);
+  const [email, setEmail] = useState(initialEmail);
+  const [password, setPassword] = useState(initialPassword);
   
   const getData = async () => {
     try {
@@ -33,8 +38,26 @@ const SubRegisterScreen_1 = ({ navigation, route }) => {
       }
 };
 
+  const getDataTest = async () => {
+    console.log(email, password);
+    const userData = {
+      email: email,
+      password
+    }
+    axios
+      .post("http://192.168.1.42:8000/loginUser", userData)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.status == "ok") {
+          AsyncStorage.setItem('token', res.data.data);
+          AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
+          //navigation.navigate('SubRegist_2');
+        }
+      });
+    }
+
   useEffect(() => {
-    getData()
+    getDataTest()
   },[]);
 
   // Functions

@@ -15,26 +15,12 @@ const SubRegisterScreen_4 = ({ navigation }) => {
 
     //useState Declaration
     const [dateOfBirth, setDateofBirth] = useState("");
+    
 
-    const [date, setDate] = useState(new Date());
-    const [showPicker, setShowPicker] = useState(false);
 
-    // Functions
-    const toggleDatePicker = () => {
-      setShowPicker(!showPicker);
-    };
-
-    const onChange = ({type}, selectedDate) => {
-      if (type == "set"){
-        const currentDate = selectedDate;
-        setDate(currentDate);
-      } else {
-        toggleDatePicker();
-      }
-    }
 
     const nextButton = () => {
-        navigation.navigate('HomeStack')
+        navigation.navigate('MenuStack')
     }
 
     // Screen
@@ -48,25 +34,8 @@ const SubRegisterScreen_4 = ({ navigation }) => {
 
             <Text style={styles.topic}>วันเดือนปีเกิดของคุณ?</Text>
 
-            {showPicker && (
-              <DateTimePicker
-                mode="date"
-                display="spinner"
-                value={date}
-                onChange={onChange}
-                />
-            )}
 
-            {!showPicker && (
-              <Pressable onPress={toggleDatePicker}>
-            <TextInput style={styles.textinput1}
-                placeholder='10/10/2002'
-                placeholderTextColor={colors.sut_grey7d}
-                value={dateOfBirth}
-                onChangeText={setDateofBirth}
-                editable={false}
-                 />
-            </Pressable>)}
+
             <View style={styles.buttonContainer}>
             <Button1 text='โอเค!' onPress={nextButton}></Button1>
             </View>

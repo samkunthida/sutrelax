@@ -46,7 +46,7 @@ const SubRegisterScreen_2 = ({ navigation, route }) => {
 
   const updateUserDetails = async () => {
     try {
-      const response = await axios.post('http://192.168.1.42:8000/updateUserDetails', {
+      const response = await axios.post('http://192.168.1.42:8000/updateUserName', {
         firstName,
         lastName,
         token
@@ -72,10 +72,7 @@ const SubRegisterScreen_2 = ({ navigation, route }) => {
   // Call updateUserDetails in handleNext function
   const handleNext = async () => {
     await updateUserDetails();
-  };
-
-  const handleNext2 = () => {
-    navigation.navigate('SubRegist_3');
+    navigation.navigate('SubRegist_3', { user: { ...userData, firstName, lastName, gender } });
   };
 
   // Screen
