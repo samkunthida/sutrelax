@@ -5,7 +5,7 @@ import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import colors from '../../../factors/colors';
 
 // Import components
-import MenuCard7 from '../../../components/MenuCard7';
+import MenuCard9 from '../../../components/MenuCard9';
 
 const NotificationScreen = ({ navigation }) => {
 
@@ -16,7 +16,7 @@ const NotificationScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <MenuCard7 topic={'บัญชีผู้ใช้'} onPress={handleAccount}/>
+                <MenuCard9 topic={'แจ้งเตือนให้กำลังใจ'} onPress={handleAccount}/>
             </ScrollView>
         </View>
     );

@@ -8,6 +8,7 @@ import stringTH from '../factors/strings'
 import screenRoutes from '../factors/screensRoutes';
 import MENUSTACKS from './MenuStacks';
 import REGSUBSTACKS from './RegSubStacks';
+import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
 
 const AuthStacks = (route) => {
   const user = route?.params?.user || {}; 
@@ -56,8 +57,8 @@ const AuthStacks = (route) => {
         options={{ headerShown: true, headerTitle: stringTH.login }}
       />
       <Stack.Screen
-        name="ForgetPassword"
-        component={screenRoutes.FORGETPASSWORD}
+        name="ForgetPasswordScreen"
+        component={ForgetPasswordScreen}
         options={{ headerShown: true, headerTitle: stringTH.forgetPassword }}
       />
       <Stack.Screen

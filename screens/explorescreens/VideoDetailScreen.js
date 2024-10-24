@@ -41,7 +41,7 @@ export default function VideoDetailScreen({ route }) {
                 <View style={styles.content}>
                     <WebView
     style={styles.video}
-    source={{ uri: `https://www.youtube.com/embed/${video.youtubeURL}` }}
+    source={{ uri: `http://www.youtube.com/embed/${video.youtubeURL}` }}
     javaScriptEnabled={true}
     domStorageEnabled={true}
     onError={(syntheticEvent) => {
