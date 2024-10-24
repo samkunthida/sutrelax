@@ -89,14 +89,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: colors.sut_white,
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 16,
     },
     section1: {
-        marginTop: 270
+        paddingHorizontal: 15,
+        position: 'absolute',
+        width: '100%',
+        top: 300
     },
     topic1: {
         fontFamily: 'Kanit-Medium',
@@ -122,7 +125,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     section2: {
-        marginTop: 250
+        marginTop: 500
     }
 
 });

@@ -4,35 +4,34 @@ import axios from 'axios';
 
 // Import components and styles
 import colors from '../../factors/colors';
-import ImageCard from '../../components/ImageCard';
+import MenuCard10 from '../../components/MenuCard10';
 import images from '../../factors/images';
-import articleImage from '../../assets/images/ArticleCardImage.png';
 
-export default function ArticleScreen({ navigation }) {
+export default function VideoScreen({ navigation }) {
 
-    const [articles, setArticles] = useState([]);
+    const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [coverImage, setCoverImage] = useState(images.ARTICLE);
 
     // Fetch articles from API
-    const fetchArticles = async () => {
+    const fetchVideo = async () => {
         try {
-            const response = await axios.post('http://192.168.1.42:8000/articleFetch');
-            console.log("Articles fetched:", response.data);
+            const response = await axios.post('http://192.168.1.42:8000/videoFetch');
+            console.log("video Fetched:", response.data);
             if (response.data.status === "Ok") {
-                setArticles(response.data.data);
+                setVideos(response.data.data); 
             } else {
-                console.error("Error fetching articles:", response.data.data);
+                console.error("Error fetching videos:", response.data.data);
             }
         } catch (error) {
-            console.error("Error fetching articles:", error);
+            console.error("Error fetching videos:", error);
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchArticles();
+        fetchVideo(); 
     }, []);
 
     if (loading) {
@@ -43,12 +42,13 @@ export default function ArticleScreen({ navigation }) {
         <ScrollView style={styles.container}>
             <View style={styles.contentContainer}>
                 <View style={styles.menuContainer1}>
-                    {articles.map(article => (
-                        <ImageCard
-                            key={article._id} 
-                            text={article.title}
+                    {videos.map(video => (
+                        <MenuCard10
+                            key={video._id} 
+                            text={video.title}
+                            desc={video.desc}
                             image={coverImage}
-                            onPress={() => navigation.navigate('ArticleDetailScreen', { articleId: article._id })}
+                            onPress={() => navigation.navigate('VideoDetailScreen', { videoId: video._id })}
                             style={styles.menu}
                         />
                     ))}
@@ -65,14 +65,13 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         width: '100%',
-        paddingTop: 40,
+        paddingTop: 20,
         alignItems: 'center',
-        marginHorizontal: 20,
+        marginHorizontal: 10,
+        paddingRight: 12,
     },
     menuContainer1: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',  
-        marginRight: 5, 
+        width: '100%',
     },
     menu: {
         

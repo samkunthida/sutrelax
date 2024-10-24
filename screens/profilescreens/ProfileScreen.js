@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native'
+import { View, StyleSheet, Text, Image, ScrollView, RefreshControl } from 'react-native'
 import {React, useState, useEffect} from 'react'
 
 
@@ -11,6 +11,7 @@ import images from '../../factors/images'
 import Button1 from '../../components/Button1'
 import Button2 from '../../components/Button2'
 import MenuCard1 from '../../components/MenuCard1'
+import BarChart1 from '../../components/BarChart1'
 
 //import dependencies
 import { BarChart, LineChart } from "react-native-gifted-charts";
@@ -23,26 +24,42 @@ const ProfileScreen = ({ navigation }) => {
   const [lastName, setLastName] = useState('')
   const [dateCreatedAccount, setDateCreatedAccount] = useState('')
   const profileImage = images.PROFILEIMAGE;
-  
-  async function getData() {
-    const token = await AsyncStorage.getItem('token')
-    console.log(token)
-    axios
-      .post("http://192.168.1.42:8000/userData", { token: token })
-      .then(res => {
-        console.log(res.data);
-        setFirstName(res.data.data.firstName);
-        setLastName(res.data.data.lastName);
+  const [userID, setUserID] = useState('');
+  const [data, setData]= useState('');
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false); 
+    async function getData() {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            console.log(token);
 
-        const date = new Date(res.data.data.dateCreatedAccount);
-        const year = date.getFullYear() + 543;
-        setDateCreatedAccount(year);
-    })
-  }
+            const res = await axios.post("http://192.168.1.42:8000/userData", { token });
+            console.log(res.data);
 
-  useEffect(() => {
-    getData()
-  },[]);
+            setFirstName(res.data.data.firstName);
+            setLastName(res.data.data.lastName);
+            setUserID(res.data.data._id);
+
+            const date = new Date(res.data.data.dateCreatedAccount);
+            const year = date.getFullYear() + 543;
+            setDateCreatedAccount(year);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            Alert.alert('Error', 'Failed to load user data.');
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const onRefresh = async () => {
+      setRefreshing(true);
+      await getData();      
+      setRefreshing(false); 
+    };
 
     const yAxisLabels = ['•', '•', '•', '•', '•', '•', '•', '•', '•', '•', '•'];
     //hardcode data
@@ -94,15 +111,31 @@ const ProfileScreen = ({ navigation }) => {
     const menuAction1 = () => {
       navigation.navigate('AssessmentHistoryScreen')
     }
+    
+    const menuAction2 = () => {
+      navigation.navigate('AssessmentScreen')
+    }
+
+    const menuAction3 = () => {
+      navigation.navigate('SettingScreen')
+    }
 
   const handleSignOut = async () => {
     await AsyncStorage.removeItem('token');
     await AsyncStorage.removeItem('isLoggedIn');
-    navigation.navigate('Splash');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Splash' }],
+    });
   }
 
   return (
-    <ScrollView style={styles.container}> 
+    <ScrollView
+          style={styles.container}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        > 
     <View>
       <Image source={images.PROFILEBG} style={styles.backgroundImage1} />
 
@@ -123,49 +156,30 @@ const ProfileScreen = ({ navigation }) => {
       <View style={styles.menuContainer1}>
           <Text style={styles.menuTopic}>สรุปผลคะแนนการประเมิน</Text>
           <View style={styles.chartSection}>
-            <Text style={styles.chartTopic}>ความเครียด</Text>
-            <BarChart data = {stressData}
-            xAxisLabelTextStyle={{color: colors.sut_grey7d, fontFamily: 'Kanit-Regular'}}
-            yAxisLabelTextStyle={{color: colors.sut_grey7d, fontFamily: 'Kanit-Regular'}}
-            yAxisLabelTexts={yAxisLabels}
-            barBorderTopLeftRadius={5}
-            barBorderTopRightRadius={5}
-            frontColor={colors.sut_grey7d}
-            xAxisThickness={0}
-            yAxisThickness={0}
-            rulesType="solid"
+            <BarChart1 
+                topic="แบบวัดความเครียด" 
+                data={stressData}                
+                yAxisLabels={yAxisLabels}       
             />
-            <Text style={styles.chartTopic}>ความวิตกกังวล</Text>
-            <BarChart data = {anxietyData}
-            xAxisLabelTextStyle={{color: colors.sut_grey7d, fontFamily: 'Kanit-Regular'}}
-            yAxisLabelTextStyle={{color: colors.sut_grey7d, fontFamily: 'Kanit-Regular'}}
-            yAxisLabelTexts={yAxisLabels}
-            barBorderTopLeftRadius={5}
-            barBorderTopRightRadius={5}
-            frontColor={colors.sut_grey7d}
-            xAxisThickness={0}
-            yAxisThickness={0}
-            rulesType="solid"
+            <BarChart1 
+                topic="แบบวัดความวิตกกังวล" 
+                data={anxietyData}                
+                yAxisLabels={yAxisLabels}       
             />
-            <Text style={styles.chartTopic}>ภาวะหมดไฟ</Text>
-            <BarChart data = {burnoutData}
-            xAxisLabelTextStyle={{color: colors.sut_grey7d, fontFamily: 'Kanit-Regular'}}
-            yAxisLabelTextStyle={{color: colors.sut_grey7d, fontFamily: 'Kanit-Regular'}}
-            yAxisLabelTexts={yAxisLabels}
-            barBorderTopLeftRadius={5}
-            barBorderTopRightRadius={5}
-            frontColor={colors.sut_grey7d}
-            xAxisThickness={0}
-            yAxisThickness={0}
-            rulesType="solid"
+            <BarChart1 
+                topic="แบบประเมินภาวะหมดไฟ" 
+                data={burnoutData}                
+                yAxisLabels={yAxisLabels}       
             />
           </View>
       </View>
 
       <View style={styles.buttonContainer}>
+        <View style={styles.textContainer}>
         <Text style={{fontFamily: 'Kanit-Regular'}}>ทำแบบประเมินเพื่อติดตามอาการต่างๆ เป็นรายเดือน</Text>
-      <Button1 style={styles.button1} text="เริ่มการทำแบบประเมิน" onPress={""} ></Button1>
-      <Button2 style={styles.button2} text="การตั้งค่า" onPress={""} icon= "gear" iconColor={colors.sut_darkblue} ></Button2>
+        </View>
+      <Button1 style={styles.button1} text="เริ่มการทำแบบประเมิน" onPress={menuAction2} ></Button1>
+      <Button2 style={styles.button2} text="การตั้งค่า" onPress={menuAction3} icon= "gear" iconColor={colors.sut_darkblue} ></Button2>
       <Button1 style={styles.button3} text="ออกจากระบบ" onPress={handleSignOut} ></Button1>
       </View>
     </View>
@@ -190,7 +204,8 @@ const styles = StyleSheet.create({
     buttonContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 50
+      marginTop: 30,
+      marginBottom: 50
     },
     profileImageContainer: {
       justifyContent: 'center',
@@ -202,7 +217,7 @@ const styles = StyleSheet.create({
       height: 116,
       borderRadius: 100,
       borderWidth: 3,
-      borderColor: colors.sut_white
+      borderColor: colors.sut_darkbrown
     },
     backgroundImage1: {
       resizeMode: "contain",
@@ -255,6 +270,9 @@ const styles = StyleSheet.create({
     barChartDefault: {
       color: colors.sut_grey7d,
       fontFamily: 'Kanit-Regular',
+    },
+    textContainer: {
+      marginBottom: 15,
     }
 });
 

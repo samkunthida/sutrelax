@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import colors from '../factors/colors';
 import stringTH from '../factors/strings';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 
 import HOMESTACKS from './HomeStacks';
 import EXPLORESTACKS from './ExploreStacks';
@@ -22,6 +22,17 @@ const MenuStacks = () => {
                 headerTitleAlign: 'center',
                 headerTintColor: colors.sut_darkblue,
                 headerStyle: { backgroundColor: colors.sut_white },
+                tabBarLabelStyle: {
+                    fontFamily: 'Kanit-Regular',
+                    fontSize: 12, 
+                },
+                tabBarStyle: {
+                    height: 70, 
+                    paddingBottom: 10, 
+                    paddingTop: 10,
+                },
+                tabBarActiveTintColor: colors.sut_darkblue,
+                tabBarInactiveTintColor: colors.sut_grey7d,
             }}
         >
             <Tab.Screen
@@ -30,8 +41,8 @@ const MenuStacks = () => {
                 options={{
                     tabBarLabel: stringTH.home,
                     headerShown: false,
-                    tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="home" size={size} color={color} />
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome6 name="house" size={25} color={color} />
                     ),
                 }}
             />
@@ -42,8 +53,8 @@ const MenuStacks = () => {
                     tabBarLabel: stringTH.exploer,
                     headerTitle: stringTH.exploer,
                     headerShown: false,
-                    tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="cubes" size={size} color={color} />
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome6 name="cubes" size={25} color={color} />
                     ),
                 }}
             />
@@ -53,8 +64,8 @@ const MenuStacks = () => {
                 options={{
                     tabBarLabel: stringTH.profile,
                     headerShown: false,
-                    tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="user" size={size} color={color} />
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome6 name="user-large" size={25} color={color} />
                     ),
                 }}
             />

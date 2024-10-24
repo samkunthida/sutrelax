@@ -18,7 +18,7 @@ export default function ExploreScreen( {navigation} ) {
   }
 
   handleVideo = () => {
-    //navigation.navigate('VideoScreen');
+    navigation.navigate('VideoScreen');
   }
 
   return (

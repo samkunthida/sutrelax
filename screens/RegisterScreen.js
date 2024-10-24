@@ -34,6 +34,7 @@ const RegisterScreen = ({ navigation }) => {
     };
 
     const handleRegister = async () => {
+        console.log("email: " + email);
         const userData = {
             firstName: "",
             lastName: "",
@@ -46,6 +47,7 @@ const RegisterScreen = ({ navigation }) => {
         };
 
         if (emailVerify && passwordVerify && passwordConfirmVerify) {
+            console.log("userData: " + JSON.stringify(userData));
             try {
                 const res = await axios.post("http://192.168.1.42:8000/registerUser", userData);
                 if (res.data.status === "ok") {
@@ -95,7 +97,7 @@ const RegisterScreen = ({ navigation }) => {
                     onChangeText={handlePasswordConfirm}
                 />
                 <Button1
-                    text={stringTH.sentToEmail}
+                    text={"สร้างบัญชี"}
                     onPress={handleRegister}
                     disabled={isButtonDisabled}
                 />

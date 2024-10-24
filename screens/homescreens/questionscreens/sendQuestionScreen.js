@@ -8,6 +8,9 @@ import stringTH from '../../../factors/strings'
 
 import Button1 from '../../../components/Button1';
 
+//import dependencies
+import axios from 'axios';
+
 const SendQuestionScreen = ({ navigation }) => {
 
     const [topic, setTopic] = useState('');

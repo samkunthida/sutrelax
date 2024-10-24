@@ -7,7 +7,7 @@ import colors from '../../../factors/colors'
 import stringTH from '../../../factors/strings'
 
 //import components
-import MenuCard5 from '../../../components/MenuCard4';
+import MenuCard5 from '../../../components/MenuCard5';
 
 const MyQuestionScreen = ({ navigation }) => {
 
@@ -19,7 +19,7 @@ const MyQuestionScreen = ({ navigation }) => {
     // Screen
     return (
         <View style={styles.container}>
-            <MenuCard5></MenuCard5>
+            <MenuCard5 topic="Example" ></MenuCard5>
         </View>
     )
 }

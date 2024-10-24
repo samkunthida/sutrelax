@@ -69,13 +69,11 @@ const SubRegisterScreen_2 = ({ navigation, route }) => {
     }
   };
 
-  // Call updateUserDetails in handleNext function
   const handleNext = async () => {
     await updateUserDetails();
     navigation.navigate('SubRegist_3', { user: { ...userData, firstName, lastName, gender } });
   };
 
-  // Screen
   return (
     <ScrollView contentContainerStyle={{ flexGlow: 1 }} keyboardShouldPersistTaps={"always"}>
       <View style={styles.container}>

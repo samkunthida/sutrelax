@@ -74,7 +74,7 @@ const AssessmentQuestionScreen = ({ navigation, route }) => {
 
     if (currentQuestionIndex >= questions.length) {
         return (
-            <View style={styles.container}>
+            <View style={styles.containerResult}>
               <View style={styles.topicContainer}>
                 <Text style={styles.topic}>{assessmentTitle}</Text>
               </View>
@@ -99,7 +99,9 @@ const AssessmentQuestionScreen = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
+          <View style={styles.questionContainer}>
             <Text style={styles.questionText}>{currentQuestion.topic}</Text>
+            </View>
             {currentQuestion.choices.map((choice, index) => (
                 <MenuCard3
                     key={index}
@@ -115,13 +117,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: colors.sut_white,
+    },
+    containerResult: {
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: colors.sut_white,
+    },
+    questionContainer: {
+      paddingHorizontal: 15,
     },
     questionText: {
         fontSize: 20,
         marginBottom: 20,
         fontFamily: 'Kanit-Regular',
         color: colors.sut_darkblue,
+        textAlign: 'center',
     },
     scoreText: {
         fontSize: 24,
@@ -140,7 +152,6 @@ const styles = StyleSheet.create({
         width:'90%',
         height: 200,
         borderRadius: 10,
-        backgroundColor: colors.sut_brown,
     },
     belowText: {
         fontSize: 14,

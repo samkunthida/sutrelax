@@ -19,7 +19,7 @@ const ArticleDetailScreen = ({ route }) => {
           fontFamily: 'Kanit-Regular',
           fontSize: 16,
           lineHeight: 24,
-          color: colors.sut_darkblue,  // สีของข้อความ
+          color: colors.sut_darkblue,
         },
         heading1: {
           fontFamily: 'Kanit-Medium',
@@ -56,8 +56,8 @@ const ArticleDetailScreen = ({ route }) => {
             const response = await axios.post('http://192.168.1.42:8000/articleDetail', { articleId });
             console.log("Article details fetched:", response.data);
             if (response.data.status === "Ok") {
-                setArticle(response.data.data);  // Store article details in state
-            } else {
+                setArticle(response.data.data);  
+
                 console.error("Error fetching article details:", response.data.data);
             }
         } catch (error) {
@@ -68,14 +68,13 @@ const ArticleDetailScreen = ({ route }) => {
     };
 
     useEffect(() => {
-        fetchArticleDetails(); // Fetch article details when the screen loads
+        fetchArticleDetails();
     }, []);
 
     if (loading) {
         return <ActivityIndicator size="large" color={colors.sut_darkblue} />;
     }
 
-    // Screen
     return (
         <ScrollView style={{backgroundColor: colors.sut_white}}>
         <View style={styles.container}>
