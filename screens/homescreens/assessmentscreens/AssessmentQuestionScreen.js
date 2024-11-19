@@ -17,6 +17,7 @@ const AssessmentQuestionScreen = ({ navigation, route }) => {
     const [selectedChoice, setSelectedChoice] = useState(null);
     const [totalScore, setTotalScore] = useState(0);
     const [userID, setUserID] = useState('');
+    const [result, setResult] = useState('');
 
     useEffect(() => {
         async function fetchUserID() {
@@ -59,6 +60,38 @@ const AssessmentQuestionScreen = ({ navigation, route }) => {
             assessmentID: assessmentID,
             dateCreated: new Date()
           });
+          if (assessmentTitle === 'แบบวัดความเครียด') {
+            if(totalScore <= 4){
+              setResult("ไม่มีความเครียด");
+            }else if(totalScore <= 7){
+              setResult("สงสัยว่ามีปัญหาความเครียด");
+            }else if(totalScore > 8){
+              setResult("มีความเครียดสูง");
+            }
+          }else if (assessmentTitle === 'แบบวัดความวิตกกังวล') {
+            if(totalScore <= 9){
+              setResult("มีความวิตกกังวลในระดับเฉลี่ยหรือสูงกว่าเกณฑ์เฉลี่ยเพียงเล็กน้อย");
+            }else if(totalScore <= 14){
+              setResult("มีความกังวลในระดับปานกลาง");
+            }else if(totalScore <= 21){
+              setResult("มีความวิตกกังวลในระดับสูง");
+            }
+          }else if (assessmentTitle === 'แบบประเมินภาวะหมดไฟ') {
+            if(totalScore <= 36){
+              setResult("มีภาวะหมดไฟในระดับต่ำสุด");
+            }else if(totalScore <= 52){
+              setResult("มีภาวะหมดไฟในระดับต่ำ");
+            }else if(totalScore <= 68){
+              setResult("มีภาวะหมดไฟในระดับกลาง");
+            }
+            else if(totalScore <= 84){
+              setResult("มีภาวะหมดไฟในระดับสูง");
+            }
+            else if(totalScore <= 100){
+              setResult("มีภาวะหมดไฟในระดับสูงสุด");
+            }
+          }
+
           console.log("Result saved successfully!");
         } catch (error) {
           console.error("Error saving result:", error);
@@ -81,6 +114,7 @@ const AssessmentQuestionScreen = ({ navigation, route }) => {
 
               <View style={styles.pointContainer}>
                 <Text style={styles.scoreText}>{totalScore} คะแนน</Text>
+                <Text style={styles.resultText}>{result}</Text>
               </View>
 
                 <View style={styles.belowTextContainer}>
@@ -143,10 +177,19 @@ const styles = StyleSheet.create({
         backgroundColor: colors.sut_white,
         width: '100%',
     },
+    resultText: {
+      fontSize: 18,
+      fontFamily: 'Kanit-Regular',
+      color: colors.sut_darkblue,
+      textAlign: 'center',
+      backgroundColor: colors.sut_white,
+      width: '100%',
+  },
     pointContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         alignSelf: 'center',
+        justifyContent: 'center',
         borderWidth: 0.5,
         borderColor: colors.sut_grey7d,
         width:'90%',
