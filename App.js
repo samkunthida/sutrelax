@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { LogBox } from 'react-native';
 
 // import factors
 import stackRoutes from './factors/stacksRoutes';
-
 // import dependencies
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,6 +16,7 @@ const App = () => {
       const data = await AsyncStorage.getItem('isLoggedIn');
       setIsLoggedIn(data === 'true');
     }
+    LogBox.ignoreAllLogs();
     getData();
   }, []);
 

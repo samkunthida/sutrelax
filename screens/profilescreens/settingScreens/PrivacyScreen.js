@@ -11,16 +11,23 @@ import MenuCard9 from '../../../components/MenuCard9';
 
 const PrivacyScreen = ({ navigation }) => {
 
-    const handleAccount = () => {
-        navigation.navigate('AccountScreen');
+    const handlePIN = () => {
+        //
     }
+    const handleChangePassword = () => {_
+        //
+    }
+    const handleUseFaceID = () => {
+        //
+    }
+
     
     return (
         <View style={styles.container}>
             <ScrollView>
-                <MenuCard9 topic={'PIN'} onPress={handleAccount}/>
-                <MenuCard8 topic={'เปลี่ยนรหัสผ่านบัญชี'} onPress={handleAccount}/>
-                <MenuCard9 topic={'ใช้งาน Face ID'} onPress={handleAccount}/>
+                <MenuCard9 topic={'PIN'} onPress={handlePIN}/>
+                <MenuCard8 topic={'เปลี่ยนรหัสผ่านบัญชี'} onPress={handleChangePassword}/>
+                <MenuCard9 topic={'ใช้งาน Face ID'} onPress={handleUseFaceID}/>
             </ScrollView>
         </View>
     );

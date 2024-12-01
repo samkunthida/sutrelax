@@ -16,8 +16,16 @@ const ShakeScreen = () => {
 
     const [text, setText] = useState('');
     const [shake, setShake] = useState(false);
-    const randomText = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"];
-
+    const [backgroundColor, setBackgroundColor] = useState(colors.sut_white);
+    const predefinedColors = [
+        "#FFB3BA", // สีชมพูอ่อน
+        "#FFDFBA", // สีส้มพาสเทล
+        "#FFFFBA", // สีเหลืองพาสเทล
+        "#BAFFC9", // สีเขียวพาสเทล
+        "#BAE1FF", // สีฟ้าพาสเทล
+        "#D5AAFF", // สีม่วงพาสเทล
+        "#FFABE1"  // สีชมพูม่วงพาสเทล
+    ];
     const [quote, setQuote] = useState('');
 
     const getData = async () => {
@@ -41,10 +49,16 @@ const ShakeScreen = () => {
     const handleShake = () => {
         //const randomIndex = Math.floor(Math.random() * randomText.length);
         //setText(randomText[randomIndex]);
-        console.log("Quote", quote);  // Should display the random quote
+        console.log("Quote", quote); 
         setText(quote);
+        randomizeBackgroundColor();
         getData()
     }
+
+    const randomizeBackgroundColor = () => {
+        const randomIndex = Math.floor(Math.random() * predefinedColors.length);
+        setBackgroundColor(predefinedColors[randomIndex]);
+    };
 
     useEffect(() => {
         let subscription;
@@ -69,7 +83,7 @@ const ShakeScreen = () => {
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor }]}>
 
             <View style={styles.section1}>
                 <Text style={styles.topic1}>{'" ' + text + ' "'}</Text>
@@ -89,7 +103,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.sut_white,
     },
     title: {
         fontSize: 24,

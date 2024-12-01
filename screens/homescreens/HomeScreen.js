@@ -66,18 +66,20 @@ const [firstName, setFirstName] = useState('')
         <View style={styles.menuContainer1}>
           <Text style={styles.menuTopic}>{stringTH.menu}</Text>
           <MenuCard1 text={stringTH.assess} onPress={menuAction1} icon= "clipboard-list" iconColor={colors.sut_secondary}></MenuCard1>
-          <MenuCard1 style={styles.menu2} text={stringTH.assessmentHistory} onPress={menuAction2} icon= "clock-rotate-left" iconColor={colors.sut_lightpurple}></MenuCard1>
-          <MenuCard1 style={styles.menu3} text={stringTH.askForEncourage} onPress={shakeMenuHandler} icon= "heart-circle-bolt" iconColor={colors.sut_lightblue}></MenuCard1>
+          <MenuCard1 style={styles.menu2} text={stringTH.assessmentHistory} onPress={menuAction2} icon= "clock-rotate-left" iconColor={colors.sut_lightblue}></MenuCard1>
+          <MenuCard1 style={styles.menu3} text={stringTH.askForEncourage} onPress={shakeMenuHandler} icon= "heart-circle-bolt" iconColor={colors.sut_lightpurple}></MenuCard1>
         </View>
 
-        <View style={styles.menuContainer3}>
+        <View style={styles.divider} />
+
+        {/* <View style={styles.menuContainer3}>
           <Text style={styles.menuTopic}>{stringTH.message}</Text>
         </View>
         <View style={styles.menuContainer2}>
           <MenuCard2 style={styles.menu4} text={stringTH.myQuestion} onPress={myQuestionHandle} icon= "envelope" iconColor={colors.sut_white}></MenuCard2>
           <MenuCard2 style={styles.menu4} text={stringTH.askQuestion} onPress={askQuestionHandle} icon= "paper-plane" iconColor={colors.sut_white}></MenuCard2>
           <MenuCard2 style={styles.menu4} text={stringTH.notiQuestion} onPress={notiQuestionHandle} icon= "bell" iconColor={colors.sut_white}></MenuCard2>
-        </View>
+        </View> */}
 
         <View style={styles.bottomContainer}>
           <Image source={images.TRIOBOYS} style={styles.bottomImage} />
@@ -102,6 +104,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 20,
   },
+  divider: {
+    width: '90%',       // ความยาวของเส้น (ปรับเป็น % หรือค่าคงที่ก็ได้)
+    height: 1,          // ความหนา
+    backgroundColor: '#D3D3D3', // สีเส้น (ใช้สีที่ต้องการ เช่น พาสเทลหรือเทาอ่อน)
+    marginVertical: 10, // ระยะห่างระหว่าง Section
+    alignSelf: 'center' // จัดให้อยู่ตรงกลาง
+},
   toptext: {
     width: '100%'
   },
@@ -122,7 +131,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   menuContainer1: {
-    width: '100%'
+    width: '100%',
+    marginBottom: 30
   },
   menuContainer2: {
     justifyContent: 'space-between'
@@ -137,10 +147,10 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   menu2: {
-    backgroundColor: colors.sut_purple
+    backgroundColor: colors.sut_blue
   },
   menu3: {
-    backgroundColor: colors.sut_blue
+    backgroundColor: colors.sut_purple
   },
   menuContainer2: {
     width: '100%',
